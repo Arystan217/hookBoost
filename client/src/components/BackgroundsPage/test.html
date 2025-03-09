@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bouncing Balls Animation</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #0d1117;
+            margin: 0;
+        }
+        canvas {
+            background: #fff;
+            border: 3px solid #000;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+
+    <script>
+        const canvas = document.getElementById("canvas");
+        const ctx = canvas.getContext("2d");
+
+        canvas.width = 400;
+        canvas.height = 400;
+
+        class Ball {
+            constructor(x, y, dx, dy) {
+                this.x = x;
+                this.y = y;
+                this.dx = dx;
+                this.dy = dy;
+                this.radius = 7.5;
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = "#ff5733";
+                ctx.fill();
+                ctx.closePath();
+            }
+
+            update() {
+                this.x += this.dx;
+                this.y += this.dy;
+
+                if (this.x - this.radius <= 0 || this.x + this.radius >= canvas.width) {
+                    return "horizontal"; // Wall hit (horizontal)
+                }
+
+                if (this.y - this.radius <= 0 || this.y + this.radius >= canvas.height) {
+                    return "vertical"; // Wall hit (vertical)
+                }
+
+                return null; // No wall hit
+            }
+        }
+
+        let balls = [new Ball(canvas.width / 2, canvas.height / 2, 2 * (Math.random() - 0.5), 2 * (Math.random() - 0.5))];
+
+        function resetBalls() {
+            balls = [new Ball(canvas.width / 2, canvas.height / 2, 2 * (Math.random() - 0.5), 2 * (Math.random() - 0.5))];
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            for (let i = 0; i < balls.length; i++) {
+                balls[i].draw();
+                let hitWall = balls[i].update();
+
+                if (hitWall && balls.length < 30) {
+                    // Create two new balls in slightly different directions
+                    let newDX1 = balls[i].dx * (Math.random() * 1.5 + 0.5);
+                    let newDY1 = balls[i].dy * (Math.random() * 1.5 + 0.5);
+                    let newDX2 = -balls[i].dx * (Math.random() * 1.5 + 0.5);
+                    let newDY2 = -balls[i].dy * (Math.random() * 1.5 + 0.5);
+
+                    balls.push(new Ball(balls[i].x, balls[i].y, newDX1, newDY1));
+                    balls.push(new Ball(balls[i].x, balls[i].y, newDX2, newDY2));
+                }
+            }
+
+            // Reset when balls reach 30
+            if (balls.length >= 30) {
+                resetBalls();
+            }
+
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+    </script>
+</body>
+</html>

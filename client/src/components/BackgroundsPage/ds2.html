@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        canvas {
+            border: 2px solid black;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        
+        // Set canvas size
+        canvas.width = 400;
+        canvas.height = 400;
+
+        class Ball {
+            constructor(x, y, dx, dy, radius) {
+                this.x = x;
+                this.y = y;
+                this.dx = dx;
+                this.dy = dy;
+                this.radius = radius;
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = 'red';
+                ctx.fill();
+                ctx.closePath();
+            }
+
+            update() {
+                let collisions = 0;
+                const nextX = this.x + this.dx;
+                const nextY = this.y + this.dy;
+
+                // Horizontal collision
+                if (nextX > canvas.width - this.radius || nextX < this.radius) {
+                    this.dx *= -1;
+                    collisions++;
+                }
+
+                // Vertical collision
+                if (nextY > canvas.height - this.radius || nextY < this.radius) {
+                    this.dy *= -1;
+                    collisions++;
+                }
+
+                this.x += this.dx;
+                this.y += this.dy;
+                return collisions;
+            }
+        }
+
+        let balls = [];
+
+        function init() {
+            // Start with one ball in the center
+            balls = [new Ball(
+                canvas.width/2,
+                canvas.height/2,
+                Math.random() * 4 - 2, // Random dx between -2 and 2
+                Math.random() * 4 - 2, // Random dy between -2 and 2
+                15
+            )];
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Draw container
+            ctx.strokeRect(0, 0, canvas.width, canvas.height);
+
+            let newBalls = [];
+            balls.forEach(ball => {
+                const collisionCount = ball.update();
+                ball.draw();
+
+                if (collisionCount > 0) {
+                    // Create two new balls with slightly different directions
+                    for (let i = 0; i < 2; i++) {
+                        const speed = Math.sqrt(ball.dx ** 2 + ball.dy ** 2);
+                        let angle = Math.atan2(ball.dy, ball.dx);
+                        angle += (Math.random() - 0.5) * 0.5; // Random angle variation
+                        
+                        const newDx = Math.cos(angle) * speed;
+                        const newDy = Math.sin(angle) * speed;
+
+                        newBalls.push(new Ball(
+                            ball.x,
+                            ball.y,
+                            newDx,
+                            newDy,
+                            ball.radius
+                        ));
+                    }
+                } else {
+                    // Keep the original ball if no collision
+                    newBalls.push(ball);
+                }
+            });
+
+            balls = newBalls;
+
+            // Reset when reaching 30 balls
+            if (balls.length >= 30) {
+                init();
+            }
+
+            requestAnimationFrame(animate);
+        }
+
+        init();
+        animate();
+    </script>
+</body>
+</html>
