@@ -13,11 +13,13 @@ header .container {
   align-items: center;
   padding: 25px 15px;
 }
-.logo {
-}
+
+.logo {}
+
 .logoImg {
   width: 190px;
 }
+
 .headerLink {
   font-size: 16.5px;
   letter-spacing: 0.5px;
@@ -33,6 +35,7 @@ header .container {
   background-position: 0 0;
   padding: 6px 0 6px 4px;
 }
+
 .headerLink:hover {
   background-position: 100% 0;
   text-shadow: 0 0 10px rgba(48, 145, 229, 0.6);
@@ -76,6 +79,7 @@ header .container {
   border-radius: 50%;
   z-index: 1;
 }
+
 .blob1 {
   top: 8vh;
   right: -50px;
@@ -84,6 +88,7 @@ header .container {
   background: #132F59;
   animation: blob-move-rotated 7.5s ease-in-out infinite alternate;
 }
+
 .blob2 {
   top: 3vh;
   left: -35px;
@@ -95,23 +100,52 @@ header .container {
 }
 
 @keyframes blob-move {
-  0% { transform: translate(0px, 0px) scale(1); }
-  50% { transform: translate(-5px, 5px) scale(0.99); }
-  50% { transform: translate(30px, -25px) scale(1.09); }
-  75% { transform: translate(-5px, 15px) scale(1.02); }
-  100% { transform: translate(0px, 0px) scale(1); }
+  0% {
+    transform: translate(0px, 0px) scale(1);
+  }
+
+  50% {
+    transform: translate(-5px, 5px) scale(0.99);
+  }
+
+  50% {
+    transform: translate(30px, -25px) scale(1.09);
+  }
+
+  75% {
+    transform: translate(-5px, 15px) scale(1.02);
+  }
+
+  100% {
+    transform: translate(0px, 0px) scale(1);
+  }
 }
+
 /* x to the left,
    y to up */
 @keyframes blob-move-rotated {
-  0% { transform: rotateZ(149deg) translate(0px, 0px) scale(1); }
-  25% { transform: rotateZ(159deg) translate(-49px, 21px) scale(1.07); }
-  50% { transform: rotateZ(149deg) translate(-19px, 10px) scale(0.98); }
-  75% { transform: rotateZ(129deg) translate(-5px, -10px) scale(1.01); }
-  100% { transform: rotateZ(149deg) translate(0px, 0px) scale(1); }
+  0% {
+    transform: rotateZ(149deg) translate(0px, 0px) scale(1);
+  }
+
+  25% {
+    transform: rotateZ(159deg) translate(-49px, 21px) scale(1.07);
+  }
+
+  50% {
+    transform: rotateZ(149deg) translate(-19px, 10px) scale(0.98);
+  }
+
+  75% {
+    transform: rotateZ(129deg) translate(-5px, -10px) scale(1.01);
+  }
+
+  100% {
+    transform: rotateZ(149deg) translate(0px, 0px) scale(1);
+  }
 }
 
-.animations {
+.clips {
   margin-top: 80px;
   border-radius: 20px;
   background: #4E5868;
@@ -119,7 +153,8 @@ header .container {
   display: flex;
   flex-wrap: wrap;
 }
-.animation {
+
+.clip {
   box-sizing: border-box;
   width: 25%;
   aspect-ratio: 1/1;
@@ -129,37 +164,199 @@ header .container {
   cursor: pointer;
   transition: all 0.3s ease;
   overflow: hidden;
+  z-index: 1;
+  position: relative;
 }
-.animation:nth-child(4n+1) {
+
+.clip:nth-child(4n+1) {
   border-radius: 20px 0 0 20px;
 }
-.animation:nth-child(1),
-.animation:nth-child(2),
-.animation:nth-child(3),
-.animation:nth-child(4) {
+
+.clip:nth-child(1),
+.clip:nth-child(2),
+.clip:nth-child(3),
+.clip:nth-child(4) {
   border-top: none;
   /* border-bottom: 1px solid rgba(236, 236, 236, 0.4); */
 }
-.animation:nth-child(4n) {
+
+.clip:nth-child(4n) {
   border-right: none;
 }
 
-.animation:hover {
-  transform: scale(1.12);
+.clip:hover {
+  transform: scale(1.08);
   border-radius: 16px;
   background: #4E5868;
   border-color: transparent;
   box-shadow: 0 0 19px #2d333d;
+  z-index: 2;
 }
-.animationLoader {
+
+.clipLoader {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100%;
 }
 
-.animationPreview {
+.clipPreview {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.clipHover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  transition: all 0.3s ease;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.clip:hover .clipHover {
+  opacity: 1;
+  visibility: visible;
+}
+
+.playIcon {
+  width: 60px;
+}
+
+.clipHover span {
+  margin-top: 8px;
+  font-size: 18.5px;
+  letter-spacing: 0.3px;
+  text-shadow: 0 0 4px rgba(0, 0, 0, 0.6);
+}
+
+
+.clipPopup {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #0b1c34;
+  z-index: 12;
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.7);
+  transition: all 0.65s ease;
+}
+
+.clipPopupActive {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+}
+
+.clipPopupReturnButton {
+  position: absolute;
+  top: 5px;
+  left: 15px;
+  font-size: 17px;
+  letter-spacing: 0.6px;
+  padding: 9px 14px 7px;
+  border-radius: 7px;
+  border: none;
+  background: rgb(40, 192, 240);
+  background: -moz-linear-gradient(90deg, rgba(40, 192, 240, 1) 0%, rgba(49, 137, 226, 1) 100%);
+  background: -webkit-linear-gradient(90deg, rgba(40, 192, 240, 1) 0%, rgba(49, 137, 226, 1) 100%);
+  background: linear-gradient(90deg, #3189e2 0%, #3d91e5 100%);
+  box-shadow: 0 0 9px rgba(49, 137, 226, 0.683);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.clipPopupReturnButton:hover {
+  box-shadow: 0 0 15px rgba(49, 137, 226, 0.8);
+}
+
+.clipPopupLogo {
+  width: 210px;
+  display: block;
+  margin: 30px auto 0;
+}
+
+.clipPopupInfo {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 60px;
+}
+
+.clipPopupVideo {
+  width: 50%;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  border-radius: 20px;
+  box-shadow: 0 0 29px #07192b;
+}
+
+.clipPopupInfoText {
+  width: 50%;
+  padding-left: 35px;
+}
+
+.clipPopupInfoText p {
+  font-weight: 800;
+  letter-spacing: 1.1px;
+  font-size: 19px;
+  margin-bottom: 6px;
+}
+
+.clipPopupInfoText span {
+  font-weight: 400;
+  letter-spacing: 0.4px;
+  margin-left: 5px;
+}
+
+.clipPopupDescription {
+  margin-top: 25px;
+}
+
+.clipPopupDescription span {
+  font-weight: 900;
+  letter-spacing: 0.5px;
+  font-size: 19px;
+  margin-bottom: 6px;
+  margin-left: 0;
+}
+
+.clipPopupDescription p {
+  font-weight: 400;
+  font-size: 18px;
+}
+
+.clipPopupDownloadButton {
+  font-size: 21px;
+  width: 100%;
+  margin-top: 45px;
+  padding: 17px 20px 15px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-radius: 9px;
+  border: none;
+  cursor: pointer;
+  background: rgb(40, 192, 240);
+  background: -moz-linear-gradient(90deg, rgba(40, 192, 240, 1) 0%, rgba(47, 130, 214, 1) 50%, rgba(40, 192, 240, 1) 100%);
+  background: -webkit-linear-gradient(90deg, rgba(40, 192, 240, 1) 0%, rgba(47, 130, 214, 1) 50%, rgba(40, 192, 240, 1) 100%);
+  background: linear-gradient(90deg, rgba(40, 192, 240, 1) 0%, rgba(47, 130, 214, 1) 50%, rgba(40, 192, 240, 1) 100%);
+  background-size: 205% 100%;
+  background-position: 0 0;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px rgba(40, 192, 240, 0.5);
+}
+
+.clipPopupDownloadButton:hover {
+  background-position: 100% 0;
+  box-shadow: 0 0 20px rgba(40, 192, 240, 0.6)
 }
