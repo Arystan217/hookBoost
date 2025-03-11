@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import styles from "./BackgroundsPage.module.css";
 import logoImg from "../../assets/logo.png"
 import preview from "../../assets/pg3.gif"
-import preview2 from "../../assets/small.gif"
+// import preview2 from "../../assets/small.gif"
 import playIcon from "../../assets/play.png"
 import { tailChase } from 'ldrs'
-import Typical from "react-typical";
+import Typewriter from "typewriter-effect";
+import axios from "axios"
 
 const BackgroundsPage = () => {
 
@@ -14,32 +15,27 @@ const BackgroundsPage = () => {
 
   tailChase.register()
 
-  // const handleDownload = () => {
-  //   // Create an iframe element (hidden)
-  //   const iframe = document.createElement('iframe');
-  //   iframe.style.display = 'none';
-  //   document.body.appendChild(iframe);
 
-  //   // Write a form to the iframe that will submit automatically
-  //   iframe.contentDocument.write(`
-  //     <form action="https://pub-70afb9dcfa934980b35e0d79bfed253a.r2.dev/small.gif" method="get">
-  //       <input type="hidden" name="download" value="1">
-  //     </form>
-  //     <script>document.forms[0].submit();</script>
-  //   `);
+  const handleDownload = async () => {
+    try {
+      const res = await axios.get(`http://localhost:5000/download?file=small.gif`);
 
-  //   // Clean up the iframe after a delay
-  //   setTimeout(() => {
-  //     document.body.removeChild(iframe);
-  //   }, 2000);
-  // };
-
-  const handleDownload = () => {
-    const baseUrl = "https://pub-70afb9dcfa934980b35e0d79bfed253a.r2.dev/small.gif";
-    const downloadUrl = `${baseUrl}?download=1&filename=final_video`;
-
-    window.location.href = downloadUrl;
+      console.log(res)  
+  
+      if (res.data.url) {
+        const link = document.createElement("a");
+        link.href = res.data.url;
+        link.download = true;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }
+    } catch (error) {
+      console.error("Download failed:", error);
+    }
   };
+
+
   return (
     <div className={styles.wrapper}>
 
@@ -65,16 +61,18 @@ const BackgroundsPage = () => {
             </span>
             {" "}
             <span className={styles.typing}>
-              <Typical
-                steps={[
-                  "TikToks", 2500,
-                  "Reels", 2500,
-                  "Shorts", 2500
-                ]}
-                loop={Infinity}
-                wrapper="p"
+              <Typewriter
+                options={{
+                  strings: ["TikToks", "Reels", "Shorts"],
+                  autoStart: true,
+                  loop: true,
+                  deleteSpeed: 75,
+                  delay: 70,
+                  pauseFor: 2500
+                }}
               />
-            </span>{" "} 
+            </span>
+            {" "}
             <span className={styles.underline}>unskippable</span>
             {/* Hook Your Viewers' Attention */}
           </h1>
@@ -92,7 +90,7 @@ const BackgroundsPage = () => {
         <div className={styles.clips}>
 
           <div className={styles.clip}>
-            <img src={preview2} alt="" className={styles.clipPreview} />
+            <img src="https://hookboost-test.c7534afce3505cb38269b7431d83bfda.r2.cloudflarestorage.com/small.gif?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=4b58c25c19ed2626a42df6b62930c07f%2F20250311%2Fauto%2Fs3%2Faws4_request&X-Amz-Date=20250311T154505Z&X-Amz-Expires=3600&X-Amz-Signature=210944cd19fbbb6f32fa7972cd0b6583f2258e4629055bca8579f06e4b4e3adc&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%3Dsmall.gif&x-amz-checksum-mode=ENABLED&x-id=GetObject" alt="" className={styles.clipPreview} />
 
             <div className={styles.clipHover} onClick={() => setIsClipPopupOpened(true)}>
               <img src={playIcon} alt="" className={styles.playIcon} />
@@ -126,7 +124,7 @@ const BackgroundsPage = () => {
           <img src={logoImg} alt="" className={styles.clipPopupLogo} />
 
           <div className={styles.clipPopupInfo}>
-            <img src={preview2} alt="" className={styles.clipPopupVideo} />
+            <img src="https://hookboost-test.c7534afce3505cb38269b7431d83bfda.r2.cloudflarestorage.com/small.gif?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=4b58c25c19ed2626a42df6b62930c07f%2F20250311%2Fauto%2Fs3%2Faws4_request&X-Amz-Date=20250311T154505Z&X-Amz-Expires=3600&X-Amz-Signature=210944cd19fbbb6f32fa7972cd0b6583f2258e4629055bca8579f06e4b4e3adc&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%3Dsmall.gif&x-amz-checksum-mode=ENABLED&x-id=GetObject" alt="" className={styles.clipPopupVideo} />
 
             <div className={styles.clipPopupInfoText}>
               <p>Duration: <span>3m 45s</span></p>

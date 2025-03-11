@@ -95,7 +95,7 @@ header .container {
   text-shadow: 0 0 25px rgba(48, 145, 229, 0.3);
   display: inline-block;
   position: relative;
-  margin-left: 5px;
+  margin-left: -10px;
 }
 .underline:after {
   content: "";
