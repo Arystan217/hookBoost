@@ -5,6 +5,7 @@ import preview from "../../assets/pg3.gif"
 import preview2 from "../../assets/small.gif"
 import playIcon from "../../assets/play.png"
 import { tailChase } from 'ldrs'
+import Typical from "react-typical";
 
 const BackgroundsPage = () => {
 
@@ -18,7 +19,7 @@ const BackgroundsPage = () => {
   //   const iframe = document.createElement('iframe');
   //   iframe.style.display = 'none';
   //   document.body.appendChild(iframe);
-    
+
   //   // Write a form to the iframe that will submit automatically
   //   iframe.contentDocument.write(`
   //     <form action="https://pub-70afb9dcfa934980b35e0d79bfed253a.r2.dev/small.gif" method="get">
@@ -26,7 +27,7 @@ const BackgroundsPage = () => {
   //     </form>
   //     <script>document.forms[0].submit();</script>
   //   `);
-    
+
   //   // Clean up the iframe after a delay
   //   setTimeout(() => {
   //     document.body.removeChild(iframe);
@@ -36,7 +37,7 @@ const BackgroundsPage = () => {
   const handleDownload = () => {
     const baseUrl = "https://pub-70afb9dcfa934980b35e0d79bfed253a.r2.dev/small.gif";
     const downloadUrl = `${baseUrl}?download=1&filename=final_video`;
-    
+
     window.location.href = downloadUrl;
   };
   return (
@@ -59,7 +60,22 @@ const BackgroundsPage = () => {
 
         <div className={styles.offer}>
           <h1 className={styles.title}>
-            Make your TikToks unskippable
+            <span className={styles.titleFirstPart}>
+              Make your
+            </span>
+            {" "}
+            <span className={styles.typing}>
+              <Typical
+                steps={[
+                  "TikToks", 2500,
+                  "Reels", 2500,
+                  "Shorts", 2500
+                ]}
+                loop={Infinity}
+                wrapper="p"
+              />
+            </span>{" "} 
+            <span className={styles.underline}>unskippable</span>
             {/* Hook Your Viewers' Attention */}
           </h1>
           <p className={styles.subtitle}>
@@ -74,12 +90,6 @@ const BackgroundsPage = () => {
 
 
         <div className={styles.clips}>
-
-          {/* <div className={styles.animation}>
-            <img src={preview} alt="" className={styles.animationPreview} />
-
-            <div></div>
-          </div> */}
 
           <div className={styles.clip}>
             <img src={preview2} alt="" className={styles.clipPreview} />
@@ -134,18 +144,18 @@ const BackgroundsPage = () => {
               </div>
 
               <button
-                onClick={handleDownload} 
+                onClick={handleDownload}
                 className={styles.clipPopupDownloadButton}
               >Download clip</button>
 
-<a 
-      href="https://pub-70afb9dcfa934980b35e0d79bfed253a.r2.dev/small.gif?filename=small" 
-      download="final.mp4"
-      target="_blank"
-    >
-      <button>Download Clip</button>
-    </a>
-              
+              <a
+                href="https://pub-70afb9dcfa934980b35e0d79bfed253a.r2.dev/small.gif?filename=small"
+                download="final.mp4"
+                target="_blank"
+              >
+                <button>Download Clip</button>
+              </a>
+
             </div>
           </div>
         </div>
