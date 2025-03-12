@@ -7,21 +7,27 @@ import playIcon from "../../assets/play.png"
 import { tailChase } from 'ldrs'
 import Typewriter from "typewriter-effect";
 import axios from "axios"
+import { useEffect } from "react";
 
 const BackgroundsPage = () => {
 
   const [isLoading, setIsLoading] = useState(true)
-  const [isClipPopupOpened, setIsClipPopupOpened] = useState(false)
+  const [clipPopup, setClipPopup] = useState({
+    isOpened: false,
+    clip: {}
+  })
+  const [clips, setClips] = useState([])
+  const url = "https://pub-70afb9dcfa934980b35e0d79bfed253a.r2.dev"
 
   tailChase.register()
 
 
   const handleDownload = async () => {
     try {
-      const res = await axios.get(`http://localhost:5000/download?file=small.gif`);
+      const res = await axios.get(`http://localhost:5000/api/download?file=${clipPopup.clip.key}.mp4`);
 
-      console.log(res)  
-  
+      console.log(res)
+
       if (res.data.url) {
         const link = document.createElement("a");
         link.href = res.data.url;
@@ -34,6 +40,25 @@ const BackgroundsPage = () => {
       console.error("Download failed:", error);
     }
   };
+
+  useEffect(() => {
+    const fetchClips = async () => {
+      try {
+        const res = await axios.get(`http://localhost:5000/api/getClipsInfo`);
+
+        console.log(res)
+
+        setClips(res.data)
+
+
+      } catch (error) {
+        console.error("Download failed:", error);
+      }
+    }
+
+    fetchClips()
+
+  }, [])
 
 
   return (
@@ -89,16 +114,31 @@ const BackgroundsPage = () => {
 
         <div className={styles.clips}>
 
-          <div className={styles.clip}>
-            <img src="https://hookboost-test.c7534afce3505cb38269b7431d83bfda.r2.cloudflarestorage.com/small.gif?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=4b58c25c19ed2626a42df6b62930c07f%2F20250311%2Fauto%2Fs3%2Faws4_request&X-Amz-Date=20250311T154505Z&X-Amz-Expires=3600&X-Amz-Signature=210944cd19fbbb6f32fa7972cd0b6583f2258e4629055bca8579f06e4b4e3adc&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%3Dsmall.gif&x-amz-checksum-mode=ENABLED&x-id=GetObject" alt="" className={styles.clipPreview} />
+          {clips?.map(el => (
+            <div className={styles.clip}>
+              {/* preview */}
+              <video
+                src={`${url}/${el?.key}-preview.mp4`}
+                autoPlay
+                loop
+                muted
+                playsInline
+                className={styles.clipPreview}
+              />
 
-            <div className={styles.clipHover} onClick={() => setIsClipPopupOpened(true)}>
-              <img src={playIcon} alt="" className={styles.playIcon} />
-              <span>Watch full clip</span>
+              <div className={styles.clipHover} onClick={() => setClipPopup(prev => ({
+                isOpened: true,
+                clip: el
+              }))}>
+                <img src={playIcon} alt="" className={styles.playIcon} />
+                <span>Watch full clip</span>
+              </div>
             </div>
-          </div>
+          ))}
 
-          <div className={styles.clip}>
+
+
+          {/* <div className={styles.clip}>
             {isLoading &&
               <div className={styles.clipLoader}>
                 <l-tail-chase
@@ -108,7 +148,7 @@ const BackgroundsPage = () => {
                 ></l-tail-chase>
               </div>
             }
-          </div>
+          </div> */}
 
 
         </div>
@@ -118,41 +158,45 @@ const BackgroundsPage = () => {
         </div>
       </div>
 
-      <div className={`${styles.clipPopup} ${isClipPopupOpened && styles.clipPopupActive}`}>
+      <div className={`${styles.clipPopup} ${clipPopup.isOpened && styles.clipPopupActive}`}>
         <div className={styles.container}>
-          <button className={styles.clipPopupReturnButton} onClick={() => setIsClipPopupOpened(false)}>Go back</button>
+          <button className={styles.clipPopupReturnButton} onClick={() => setClipPopup(prev => ({
+            isOpened: false,
+            clip: {}
+          }))}>Go back</button>
           <img src={logoImg} alt="" className={styles.clipPopupLogo} />
 
           <div className={styles.clipPopupInfo}>
-            <img src="https://hookboost-test.c7534afce3505cb38269b7431d83bfda.r2.cloudflarestorage.com/small.gif?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=4b58c25c19ed2626a42df6b62930c07f%2F20250311%2Fauto%2Fs3%2Faws4_request&X-Amz-Date=20250311T154505Z&X-Amz-Expires=3600&X-Amz-Signature=210944cd19fbbb6f32fa7972cd0b6583f2258e4629055bca8579f06e4b4e3adc&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%3Dsmall.gif&x-amz-checksum-mode=ENABLED&x-id=GetObject" alt="" className={styles.clipPopupVideo} />
+            <video
+              src={`${url}/${clipPopup.clip?.key}.mp4`}
+              autoPlay
+              loop
+              playsInline
+              controls
+              className={styles.clipPopupVideo}
+            />
 
             <div className={styles.clipPopupInfoText}>
-              <p>Duration: <span>3m 45s</span></p>
-              <p>Authors: <span>HookBoost's content creation team</span></p>
-              <p>Frame rate: <span>60 fps</span></p>
-              <p>Format: <span>mp4</span></p>
-              <p>Aspect Ration: <span>1:1</span></p>
-              <p>Size: <span>70MB</span></p>
-              <p>Loopable: <span>No</span></p>
-              <p>Sound: <span>Yes</span></p>
+              <p>Duration: <span>{clipPopup.clip?.duration || ""}</span></p>
+              <p>Authors: <a href={clipPopup.clip?.linkForAuthors || ""} target="_blank">{clipPopup.clip?.authors || ""}</a></p>
+              <p>Frame rate: <span>{clipPopup.clip?.frameRate || ""} fps</span></p>
+              <p>Format: <span>{clipPopup.clip?.format || ""}</span></p>
+              <p>Aspect Ration: <span>{clipPopup.clip?.aspectRation || ""}</span></p>
+              <p>Size: <span>{clipPopup.clip?.size || ""}</span></p>
+              <p>Loopable: <span>{clipPopup.clip?.loopable == true ? "Yes" : "No"}</span></p>
+              <p>Sound: <span>{clipPopup.clip?.sound == true ? "Yes" : "No"}</span></p>
 
-              <div className={styles.clipPopupDescription}>
-                <span>Description:</span>
-                <p>Dynamic clip from Pixel Gun 3D game.</p>
-              </div>
+              {clipPopup.clip?.description && (
+                <div className={styles.clipPopupDescription}>
+                  <span>Description:</span>
+                  <p>{clipPopup.clip?.description || ""}</p>
+                </div>
+              )}
 
               <button
                 onClick={handleDownload}
                 className={styles.clipPopupDownloadButton}
               >Download clip</button>
-
-              <a
-                href="https://pub-70afb9dcfa934980b35e0d79bfed253a.r2.dev/small.gif?filename=small"
-                download="final.mp4"
-                target="_blank"
-              >
-                <button>Download Clip</button>
-              </a>
 
             </div>
           </div>

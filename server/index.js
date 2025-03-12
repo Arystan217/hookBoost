@@ -3,11 +3,14 @@ const cors = require("cors");
 const { S3Client, GetObjectCommand } = require("@aws-sdk/client-s3");
 const { getSignedUrl } = require("@aws-sdk/s3-request-presigner");
 const mongoose = require("mongoose");
+const uuid = require("uuid")
+const Clip = require("./models/cilp-mode")
 require("dotenv").config();
 
 const PORT = process.env.PORT || 5000
 
 const app = express();
+app.use(express.json());
 
 app.use(cors());
 
@@ -22,7 +25,7 @@ const s3Client = new S3Client({
 });
 
 // Generate a signed URL for direct download
-app.get("/download", async (req, res) => {
+app.get("/api/download", async (req, res) => {
   try {
     const fileName = req.query?.file; // Pass filename as a query param
     console.log(fileName)
@@ -47,6 +50,62 @@ app.get("/download", async (req, res) => {
     res.status(500).json({ error: "Error generating signed URL" });
   }
 });
+
+app.get("/api/getClipsInfo", async (req, res) => {
+  try {
+    // const data = req.query
+
+    const clips = await Clip.find()
+
+    console.log(clips)
+
+    return res.json(clips)
+
+  } catch (e) {
+    console.error(e);
+    return res.status(400).json({ e })
+  }
+})
+
+app.get("/uuid", async (req, res) => {
+  try {
+    res.send(uuid.v4())
+  } catch (e) {
+    res.send("error happened")
+  }
+})
+
+app.post("/addClip", async (req, res) => {
+  const data = req.body
+
+  console.log(data)
+
+  try {
+    const newClip = new Clip({
+      key: data.key,
+      gifPreviewLink: data.gifPreviewLink,
+      fullVideoLink: data.fullVideoLink,
+      duration: data.duration,
+      authors: data.authors,
+      linkForAuthors: data.linkForAuthors,
+      frameRate: data.frameRate,
+      format: data.format,
+      aspectRation: data.aspectRation,
+      size: data.size,
+      loopable: data.loopable,
+      sound: data.sound,
+      description: data.description,
+    })
+
+    await newClip.save()
+
+    return res.json({message: "success"})
+
+  } catch (e) {
+    res.send("error happened")
+  }
+})
+
 
 
 const start = async () => {

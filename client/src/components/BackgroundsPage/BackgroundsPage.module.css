@@ -245,6 +245,7 @@ header .container {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  pointer-events: none;
 }
 
 .clipHover {
@@ -323,7 +324,7 @@ header .container {
 }
 
 .clipPopupLogo {
-  width: 210px;
+  width: 200px;
   display: block;
   margin: 30px auto 0;
 }
@@ -348,16 +349,35 @@ header .container {
 }
 
 .clipPopupInfoText p {
-  font-weight: 800;
-  letter-spacing: 1.1px;
+  font-weight: 600;
+  letter-spacing: 0.8px;
   font-size: 19px;
   margin-bottom: 6px;
 }
 
 .clipPopupInfoText span {
-  font-weight: 400;
+  font-weight: 300;
   letter-spacing: 0.4px;
   margin-left: 5px;
+}
+.clipPopupInfoText a {
+  letter-spacing: 0.5px;
+  font-weight: 400;
+  margin-left: 5px;
+  color: #E6E8EB;
+  text-decoration: none;
+  background: linear-gradient(90deg, rgba(40, 192, 240, 1) 0%, rgba(49, 137, 226, 1) 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  transition: all 0.2s ease;
+  padding: 6px 0 6px 4px;
+  text-shadow: 0 0 3px rgba(48, 145, 229, 0.3);
+}
+
+.clipPopupInfoText a:hover {
+  text-shadow: 0 0 10px rgba(48, 145, 229, 0.6);
 }
 
 .clipPopupDescription {
@@ -365,22 +385,24 @@ header .container {
 }
 
 .clipPopupDescription span {
-  font-weight: 900;
-  letter-spacing: 0.5px;
+  font-weight: 600;
+  letter-spacing: 0.8px;
   font-size: 19px;
   margin-bottom: 6px;
   margin-left: 0;
 }
 
 .clipPopupDescription p {
-  font-weight: 400;
+  margin-top: 2px;
+  font-weight: 300;
   font-size: 18px;
+  letter-spacing: 0.4px;
 }
 
 .clipPopupDownloadButton {
   font-size: 21px;
   width: 100%;
-  margin-top: 45px;
+  margin-top: 75px;
   padding: 17px 20px 15px;
   text-transform: uppercase;
   letter-spacing: 1px;
