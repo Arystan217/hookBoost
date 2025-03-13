@@ -1,5 +1,10 @@
 .wrapper {}
 
+.noScroll {
+  max-height: 100vh;
+  overflow: hidden;
+}
+
 .container {
   max-width: 1350px;
   margin: 0 auto;
@@ -293,6 +298,7 @@ header .container {
   visibility: hidden;
   transform: scale(0.7);
   transition: all 0.65s ease;
+  overflow-y: auto;
 }
 
 .clipPopupActive {
@@ -395,7 +401,6 @@ header .container {
 .clipPopupDescription p {
   margin-top: 2px;
   font-weight: 300;
-  font-size: 18px;
   letter-spacing: 0.4px;
 }
 

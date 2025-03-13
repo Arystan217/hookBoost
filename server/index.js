@@ -92,7 +92,7 @@ app.post("/addClip", async (req, res) => {
       format: data.format,
       aspectRation: data.aspectRation,
       size: data.size,
-      loopable: data.loopable,
+      resolution: data.resolution,
       sound: data.sound,
       description: data.description,
     })

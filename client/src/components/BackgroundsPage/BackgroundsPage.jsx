@@ -62,7 +62,7 @@ const BackgroundsPage = () => {
 
 
   return (
-    <div className={styles.wrapper}>
+    <div className={`${styles.wrapper} ${clipPopup.isOpened && styles.noScroll}`}>
 
       <header>
         <div className={styles.container}>
@@ -179,11 +179,11 @@ const BackgroundsPage = () => {
             <div className={styles.clipPopupInfoText}>
               <p>Duration: <span>{clipPopup.clip?.duration || ""}</span></p>
               <p>Authors: <a href={clipPopup.clip?.linkForAuthors || ""} target="_blank">{clipPopup.clip?.authors || ""}</a></p>
+              <p>Resolution: <span>{clipPopup.clip?.resolution || ""}</span></p>
               <p>Frame rate: <span>{clipPopup.clip?.frameRate || ""} fps</span></p>
               <p>Format: <span>{clipPopup.clip?.format || ""}</span></p>
               <p>Aspect Ration: <span>{clipPopup.clip?.aspectRation || ""}</span></p>
               <p>Size: <span>{clipPopup.clip?.size || ""}</span></p>
-              <p>Loopable: <span>{clipPopup.clip?.loopable == true ? "Yes" : "No"}</span></p>
               <p>Sound: <span>{clipPopup.clip?.sound == true ? "Yes" : "No"}</span></p>
 
               {clipPopup.clip?.description && (

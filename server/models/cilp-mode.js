@@ -11,7 +11,7 @@ const ClipModel = new Schema({
   format: {type: String, required: true},
   aspectRation: {type: String, required: true},
   size: {type: String, required: true},
-  loopable: {type: Boolean, required: true},
+  resolution: {type: String, required: true},
   sound: {type: Boolean, required: true},
   description: {type: String, required: false}
 })
