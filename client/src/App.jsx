@@ -1,11 +1,19 @@
 import React from "react";
-import BackgroundsPage from "./components/BackgroundsPage/BackgroundsPage";
+import LandingPage from "./components/LandingPage/LandingPage";
 import VideoPlayer from "./components/UI/VideoPlayer/VideoPlayer";
+import { Route, Routes } from "react-router-dom"
+import LoginPage from "./components/LoginPage/LoginPage";
+import SignUpPage from "./components/SignUpPage/SignUpPage";
 
 const App = () => {
   return (
     <div>
-      <BackgroundsPage />
+      <Routes>
+        <Route element={<LandingPage />} path="/" />
+        <Route element={<LoginPage />} path="/login" />
+        <Route element={<SignUpPage />} path="/signup" />
+      </Routes>
+      
       {/* <VideoPlayer src="https://pub-70afb9dcfa934980b35e0d79bfed253a.r2.dev/minecraft-parkur-53a8a156-489b-46e7-85f4-c891be033525.mp4" /> */}
     </div>
   );

@@ -24,10 +24,12 @@ header .container {
 .logoImg {
   width: 190px;
 }
+.headerLinks {
 
+}
 .headerLink {
-  font-size: 16.5px;
-  letter-spacing: 0.5px;
+  font-size: 17.5px;
+  letter-spacing: 0.2px;
   color: #E6E8EB;
   text-decoration: none;
   background: linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 50%, rgba(40, 192, 240, 1) 51%, rgba(49, 137, 226, 1) 100%);
@@ -39,12 +41,39 @@ header .container {
   background-size: 205% 100%;
   background-position: 0 0;
   padding: 6px 0 6px 4px;
+  cursor: pointer;
+  margin-left: 12px;
 }
-
 .headerLink:hover {
   background-position: 100% 0;
   text-shadow: 0 0 10px rgba(48, 145, 229, 0.6);
 }
+.headerOfferButton {
+  font-size: 17.5px;
+  letter-spacing: 0.2px;
+  margin-left: 22px;
+  padding: 5px 12px 6px;
+  letter-spacing: 1px;
+  border-radius: 5.5px;
+  border: none;
+  cursor: pointer;
+  background: rgb(40, 192, 240);
+  background: -moz-linear-gradient(90deg, rgba(40, 192, 240, 1) 0%, rgba(47, 130, 214, 1) 50%, rgba(40, 192, 240, 1) 100%);
+  background: -webkit-linear-gradient(90deg, rgba(40, 192, 240, 1) 0%, rgba(47, 130, 214, 1) 50%, rgba(40, 192, 240, 1) 100%);
+  background: linear-gradient(90deg, rgba(40, 192, 240, 1) 0%, rgba(47, 130, 214, 1) 50%, rgba(40, 192, 240, 1) 100%);
+  background-size: 205% 100%;
+  background-position: 0 0;
+  transition: all 0.35s ease;
+  box-shadow: 0 0 10px rgba(40, 192, 240, 0.8);
+  color: #fff;
+}
+
+.headerOfferButton:hover {
+  background-position: 99% 0;
+  box-shadow: 0 0 24px rgba(40, 192, 240, 0.8)
+}
+
+
 
 .offer {
   display: flex;
@@ -53,11 +82,10 @@ header .container {
 }
 
 .title {
-
   display: inline-block;
   color: #2BABEA;
   font-size: 60px;
-  margin-top: 80px;
+  margin-top: 180px;
   letter-spacing: 0.7px;
   font-weight: 700;
   text-shadow: 0 0 25px rgba(48, 145, 229, 0.3);
@@ -122,6 +150,29 @@ header .container {
   margin-top: 25px;
 }
 
+.heroButton {
+  font-size: 21px;
+  margin-top: 40px;
+  padding: 18px 40px 15px;
+  letter-spacing: 1px;
+  border-radius: 9px;
+  border: none;
+  cursor: pointer;
+  background: rgb(40, 192, 240);
+  background: -moz-linear-gradient(90deg, rgba(40, 192, 240, 1) 0%, rgba(47, 130, 214, 1) 50%, rgba(40, 192, 240, 1) 100%);
+  background: -webkit-linear-gradient(90deg, rgba(40, 192, 240, 1) 0%, rgba(47, 130, 214, 1) 50%, rgba(40, 192, 240, 1) 100%);
+  background: linear-gradient(90deg, rgba(40, 192, 240, 1) 0%, rgba(47, 130, 214, 1) 50%, rgba(40, 192, 240, 1) 100%);
+  background-size: 205% 100%;
+  background-position: 0 0;
+  transition: all 0.35s ease;
+  box-shadow: 0 0 10px rgba(40, 192, 240, 0.8);
+}
+
+.heroButton:hover {
+  background-position: 100% 0;
+  box-shadow: 0 0 24px rgba(40, 192, 240, 0.8)
+}
+
 .blurredBg {
   position: absolute;
   filter: blur(90px);
@@ -130,7 +181,7 @@ header .container {
 }
 
 .blob1 {
-  top: 8vh;
+  top: 48vh;
   right: -50px;
   width: 450px;
   height: 390px;
@@ -244,13 +295,18 @@ header .container {
   justify-content: center;
   align-items: center;
   height: 100%;
+  z-index: 1;
 }
 
 .clipPreview {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   pointer-events: none;
+  z-index: 5;
 }
 
 .clipHover {
