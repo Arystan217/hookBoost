@@ -35,11 +35,12 @@ const SignUpPage = () => {
       }, { withCredentials: true })
 
       console.log(res)
-      
+
+      navigate("/mainPage")
 
       setIsLoading(false)
     } catch (e) {
-      setErrorMsg(e || "Something went wrong, please try later")
+      setErrorMsg(e.response.data.message || "Something went wrong, please try later")
       setIsLoading(false)
     }
   }
@@ -95,6 +96,8 @@ const SignUpPage = () => {
               ></l-tail-chase>
               ) : "Sign up"}
             </button>
+
+            <p className={styles.hasAnAccount}>Already has an account? <Link to="/login">Sign in</Link></p>
           </form>
 
         </div>

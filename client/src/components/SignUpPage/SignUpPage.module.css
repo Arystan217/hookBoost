@@ -20,7 +20,7 @@
 }
 
 .content {
-  padding: 22px 18px;
+  padding: 24px 18px 15px;
   border-radius: 20px;
   /* #3C5A83 */
   background: #243752;
@@ -127,4 +127,26 @@ form {
 .submitButton:hover {
   background-position: 100% 0;
   box-shadow: 0 0 20px rgba(40, 192, 240, 0.6)
+}
+
+.hasAnAccount {
+  color: rgba(255, 255, 255, 0.8);
+  letter-spacing: 0.2px;
+  font-size: 16px;
+  margin-top: 16px;
+  text-align: center;
+}
+.hasAnAccount a {
+  background: linear-gradient(90deg, rgba(40, 192, 240, 1) 0%, rgba(49, 137, 226, 1) 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  transition: all 0.2s ease;
+  font-weight: 500;
+  font-size: 16px;
+  text-shadow: 0 0 2px rgba(40, 192, 240, 0.3);
+}
+.hasAnAccount a:hover {
+  text-shadow: 0 0 5px rgba(40, 192, 240, 0.5);
 }

@@ -111,7 +111,7 @@ const BackgroundsPage = () => {
             {/* Hook More Views with Eye-catching parallel videos. Choose from wide variety of visuals that boost retention and make your short videos unskippable. */}
           </p>
 
-          <button className={styles.heroButton}>Try now for free!</button>
+          <Link to="/signup" className={styles.heroButton}>Try now for free!</Link>
         </div>
 
 

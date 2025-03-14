@@ -166,6 +166,7 @@ header .container {
   background-position: 0 0;
   transition: all 0.35s ease;
   box-shadow: 0 0 10px rgba(40, 192, 240, 0.8);
+  color: #fff;
 }
 
 .heroButton:hover {

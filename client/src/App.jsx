@@ -4,12 +4,14 @@ import VideoPlayer from "./components/UI/VideoPlayer/VideoPlayer";
 import { Route, Routes } from "react-router-dom"
 import LoginPage from "./components/LoginPage/LoginPage";
 import SignUpPage from "./components/SignUpPage/SignUpPage";
+import MainPage from "./components/MainPage/MainPage";
 
 const App = () => {
   return (
     <div>
       <Routes>
         <Route element={<LandingPage />} path="/" />
+        <Route element={<MainPage />} path="/mainPage" />
         <Route element={<LoginPage />} path="/login" />
         <Route element={<SignUpPage />} path="/signup" />
       </Routes>
