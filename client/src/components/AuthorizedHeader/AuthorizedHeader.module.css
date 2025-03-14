@@ -1,0 +1,67 @@
+.container {
+  max-width: 1350px;
+  margin: 0 auto;
+  padding: 0 15px;
+  position: relative;
+}
+
+header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 15px 10px;
+}
+
+.logo {}
+
+.logoImg {
+  width: 190px;
+}
+.headerLinks {
+
+}
+.headerLink {
+  font-size: 17.5px;
+  letter-spacing: 0.2px;
+  color: #E6E8EB;
+  text-decoration: none;
+  background: linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 50%, rgba(40, 192, 240, 1) 51%, rgba(49, 137, 226, 1) 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  transition: all 0.3s ease;
+  background-size: 205% 100%;
+  background-position: 0 0;
+  padding: 6px 0 6px 4px;
+  cursor: pointer;
+  margin-left: 12px;
+}
+.headerLink:hover {
+  background-position: 100% 0;
+  text-shadow: 0 0 10px rgba(48, 145, 229, 0.6);
+}
+.headerOfferButton {
+  font-size: 17.5px;
+  letter-spacing: 0.2px;
+  margin-left: 22px;
+  padding: 5px 12px 6px;
+  letter-spacing: 1px;
+  border-radius: 5.5px;
+  border: none;
+  cursor: pointer;
+  background: rgb(40, 192, 240);
+  background: -moz-linear-gradient(90deg, rgba(40, 192, 240, 1) 0%, rgba(47, 130, 214, 1) 50%, rgba(40, 192, 240, 1) 100%);
+  background: -webkit-linear-gradient(90deg, rgba(40, 192, 240, 1) 0%, rgba(47, 130, 214, 1) 50%, rgba(40, 192, 240, 1) 100%);
+  background: linear-gradient(90deg, rgba(40, 192, 240, 1) 0%, rgba(47, 130, 214, 1) 50%, rgba(40, 192, 240, 1) 100%);
+  background-size: 205% 100%;
+  background-position: 0 0;
+  transition: all 0.35s ease;
+  box-shadow: 0 0 10px rgba(40, 192, 240, 0.8);
+  color: #fff;
+}
+
+.headerOfferButton:hover {
+  background-position: 99% 0;
+  box-shadow: 0 0 24px rgba(40, 192, 240, 0.8)
+}

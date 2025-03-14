@@ -129,7 +129,7 @@ header .container {
   font-family: "Outfit", sans-serif;
   margin-top: 8px;
   font-size: 40px;
-  letter-spacing: 2px;
+  letter-spacing: 3px;
   font-weight: 500;
 }
 .tariffPrice span {
@@ -169,13 +169,18 @@ header .container {
   border-radius: 8px;
   border: none;
   cursor: pointer;
-  background: linear-gradient(90deg, rgba(40, 192, 240, 1) 0%, rgba(49, 137, 226, 1) 100%);
+  background: rgb(40, 192, 240);
+  background: -moz-linear-gradient(90deg, rgba(40, 192, 240, 1) 0%, rgba(47, 130, 214, 1) 50%, rgba(40, 192, 240, 1) 100%);
+  background: -webkit-linear-gradient(90deg, rgba(40, 192, 240, 1) 0%, rgba(47, 130, 214, 1) 50%, rgba(40, 192, 240, 1) 100%);
+  background: linear-gradient(90deg, rgba(40, 192, 240, 1) 0%, rgba(47, 130, 214, 1) 50%, rgba(40, 192, 240, 1) 100%);
+  background-size: 205% 100%;
   font-weight: 500;
   box-shadow: 0 0 5px rgba(42, 174, 236, 0.542);
-  transition: all 0.3s ease;
+  transition: all 0.4s ease;
 }
 .purchaseTariff:hover {
-  box-shadow: 0 0 20px rgba(42, 174, 236, 0.7);
+  box-shadow: 0 0 20px rgba(42, 174, 236, 0.8);
+  background-position: 99% 0;
 }
 
 

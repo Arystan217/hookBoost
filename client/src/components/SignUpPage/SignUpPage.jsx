@@ -3,11 +3,13 @@ import styles from "./SignUpPage.module.css";
 import hideIcon from "../../assets/hide.png"
 import showIcon from "../../assets/show.png"
 import logoImg from "../../assets/logo.png"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { tailChase } from 'ldrs'
 
 const SignUpPage = () => {
+
+  const navigate = useNavigate()
 
   tailChase.register()
 
@@ -31,7 +33,8 @@ const SignUpPage = () => {
 
       const res = await axios.post(`http://localhost:5000/api/signup`, {
         login,
-        password
+        password,
+        navigate
       }, { withCredentials: true })
 
       console.log(res)
@@ -40,8 +43,9 @@ const SignUpPage = () => {
 
       setIsLoading(false)
     } catch (e) {
-      setErrorMsg(e.response.data.message || "Something went wrong, please try later")
+      console.log(e)
       setIsLoading(false)
+      setErrorMsg(e?.response?.data?.message || "Something went wrong, please try later")
     }
   }
 
@@ -79,7 +83,7 @@ const SignUpPage = () => {
               <label htmlFor="password">Password</label>
               <img
                 onClick={() => setShowPassword(!showPassword)}
-                src={showPassword ? showIcon : hideIcon }
+                src={showPassword ? showIcon : hideIcon}
                 className={styles.showPassword}
                 title={showPassword ? 'Скрыть пароль' : 'Показать пароль'}
               />
@@ -90,10 +94,10 @@ const SignUpPage = () => {
             <button className={`${styles.submitButton} ${isLoading && styles.submitButtonLoading}`} onClick={e => loginHandler(e)}>
               {isLoading ? (
                 <l-tail-chase
-                size="35"
-                speed="1.75" 
-                color="#fff" 
-              ></l-tail-chase>
+                  size="35"
+                  speed="1.75"
+                  color="#fff"
+                ></l-tail-chase>
               ) : "Sign up"}
             </button>
 

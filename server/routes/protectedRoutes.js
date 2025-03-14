@@ -5,6 +5,7 @@ const Clip = require("../models/cilp-model")
 const authenticate = require("../middlewares/authMiddleware");
 const { S3Client, GetObjectCommand } = require("@aws-sdk/client-s3");
 const { getSignedUrl } = require("@aws-sdk/s3-request-presigner");
+const jwt = require("jsonwebtoken")
 require("dotenv").config();
 
 // const bcrypt = require("bcrypt");
@@ -35,9 +36,32 @@ const s3Client = new S3Client({
 router.get("/api/download", authenticate, async (req, res) => {
   try {
     const fileName = req.query?.file; // Pass filename as a query param
-    console.log(fileName)
-
     console.log(`filename: ${fileName}`)
+
+
+    const token = req.headers.authorization.split(' ')[1]
+    const decoded = jwt.verify(token, process.env.JWT_ACCESS_SECRET)
+    console.log(decoded.login)
+    if (!decoded.login) {
+      return res.status(400).json({ e: "no login" })
+    }
+    const user = await User.findOne({ login: decoded.login })
+    if (!user) return res.status(400).json({ e: "no login" })
+
+    const fileKey = fileName.replace(".mp4", "");
+
+    const clip = await Clip.findOne({ key: fileKey });
+    if (!clip) return res.status(400).json({ e: "Clip not found" });
+
+    user.downloads = user.downloads.filter(dwnld => dwnld !== fileKey);
+
+    // Add the new download at the beginning
+    user.downloads.unshift(fileKey);
+
+    // Save changes
+    await user.save();
+
+    console.log("Updated downloads:", user.downloads);
 
     const command = new GetObjectCommand({
       Bucket: "hookboost-test",
@@ -48,8 +72,6 @@ router.get("/api/download", authenticate, async (req, res) => {
     const signedUrl = await getSignedUrl(s3Client, command, {
       expiresIn: 3600, // Link expires in 1 hour
     });
-
-    console.log(signedUrl)
 
     res.json({ url: signedUrl }); // Send the pre-signed URL to the frontend
   } catch (error) {
@@ -65,6 +87,35 @@ router.get("/api/getClipsInfo", authenticate, async (req, res) => {
     const clips = await Clip.find()
 
     return res.json(clips)
+
+  } catch (e) {
+    console.error(e);
+    return res.status(400).json({ e })
+  }
+})
+
+router.get("/api/getUserDownloads", authenticate, async (req, res) => {
+  try {
+    // const data = req.query
+    const token = req.headers.authorization.split(' ')[1]
+    const decoded = jwt.verify(token, process.env.JWT_ACCESS_SECRET)
+    console.log(decoded.login)
+
+    if (!decoded.login) {
+      return res.status(400).json({ e: "no login" })
+    }
+
+    const user = await User.findOne({ login: decoded.login })
+
+    if (!user) {
+      return res.status(400).json({ e: "wrong credentials" })
+    }
+
+    const clips = await Clip.find({ key: { $in: user.downloads } });
+
+    return res.json({ downloads: clips })
+
+
 
   } catch (e) {
     console.error(e);

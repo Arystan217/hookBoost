@@ -12,12 +12,12 @@ router.post("/login", async (req, res) => {
 
     // validate login data
     if (!data.login.trim().length || !data.password.trim().length) {
-      return res.status(400).json({message: "Almost there! Just make sure all fields are filled in."})
+      return res.status(400).json({ message: "Almost there! Just make sure all fields are filled in." })
     }
 
-    const user = await User.findOne({login: data.login})
+    const user = await User.findOne({ login: data.login })
     if (!user) {
-      return res.status(400).json({message: "Oops! We couldn’t find an account with those details. Try again?"})
+      return res.status(400).json({ message: "Oops! We couldn’t find an account with those details. Try again?" })
     }
     const isPasswordValid = await bcrypt.compare(data.password, user.password)
     if (!isPasswordValid) {
@@ -38,7 +38,7 @@ router.post("/login", async (req, res) => {
     return res.status(200).json({ accessToken });
   } catch (e) {
     console.log(e)
-    return res.status(400).json({e: "Oops, something went wrong, please try later"})
+    return res.status(400).json({ e: "Oops, something went wrong, please try later" })
   }
 })
 
@@ -50,13 +50,13 @@ router.post("/signup", async (req, res) => {
 
     // validate login data
     if (!data.login.trim().length || !data.password.trim().length) {
-      return res.status(400).json({message: "Please make sure all fields are filled in"})
+      return res.status(400).json({ message: "Please make sure all fields are filled in" })
     }
 
-    const isAlreadyUser = await User.findOne({login: data.login})
+    const isAlreadyUser = await User.findOne({ login: data.login })
 
     if (isAlreadyUser) {
-      return res.status(400).json({message: "Unfortunately, user with such email already exists, please try with another email"})
+      return res.status(400).json({ message: "Unfortunately, user with such email already exists, please try with another email" })
     }
 
     const hashedPassword = await bcrypt.hash(data.password, 7);
@@ -64,13 +64,14 @@ router.post("/signup", async (req, res) => {
     const newUser = new User({
       login: data.login,
       password: hashedPassword,
-      subscription: "free"
+      subscription: "free",
+      downloads: []
     })
 
     await newUser.save()
 
-    const accessToken = generateAccessToken({login: data.login})
-    const refreshToken = generateRefreshToken({login: data.login})
+    const accessToken = generateAccessToken({ login: data.login })
+    const refreshToken = generateRefreshToken({ login: data.login })
 
     // Send refresh token as HttpOnly cookie
     res.cookie('hookBoostRefreshToken', refreshToken, {
@@ -83,7 +84,7 @@ router.post("/signup", async (req, res) => {
     return res.status(200).json({ accessToken });
   } catch (e) {
     console.log(e)
-    return res.status(400).json({e: "Oops, something went wrong, please try later"})
+    return res.status(400).json({ e: "Oops, something went wrong, please try later" })
   }
 })
 

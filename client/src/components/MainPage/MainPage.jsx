@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import logoImg from "../../assets/logo.png"
 import playIcon from "../../assets/play.png"
 import { tailChase } from 'ldrs'
+import AuthorizedHeader from "../AuthorizedHeader/AuthorizedHeader";
 
 
 const MainPage = () => {
@@ -16,7 +17,7 @@ const MainPage = () => {
   const [clips, setClips] = useState([])
 
   const [availableFilters, setAvailableFilters] = useState(["GTA 5", "Pixel Gun 3D", "Minecraft Parkour", "Minecraft Building", "Fortnite", "Forza Horizon"])
-  const [selectedFilters, setSelectedFilters] = useState([""])
+  const [selectedFilters, setSelectedFilters] = useState([])
 
   const [isLoading, setIsLoading] = useState(true)
   const [clipPopup, setClipPopup] = useState({
@@ -78,27 +79,15 @@ const MainPage = () => {
     }
   };
 
+
   return (
     <div className={`${styles.wrapper} ${clipPopup.isOpened && styles.noScroll}`}>
-      <header>
-        <div className={styles.container}>
-          <a className={styles.logo} href="/mainPage">
-            <img src={logoImg} alt="" className={styles.logoImg} />
-          </a>
-
-          {/* <a href="mailto: arystan.working@gmail.com" className={styles.headerLink}>contact@hookboost.com</a> */}
-          <div className={styles.headerLinks}>
-            <a to="/login" className={styles.headerLink}>Downloads</a>
-            <a to="/login" className={styles.headerLink}>My profile</a>
-            <Link to="/pricing" className={styles.headerOfferButton}>Upgrade to premium</Link>
-          </div>
-        </div>
-      </header>
+      <AuthorizedHeader />
 
       <div className={styles.container}>
         <div className={styles.filters}>
           <div
-            className={`${styles.filter} ${!selectedFilters.length && styles.filterActive}`}
+            className={`${styles.filter} ${selectedFilters.length == 0 && styles.filterActive}`}
             onClick={() => {
               setSelectedFilters([])
             }}
