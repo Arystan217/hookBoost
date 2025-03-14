@@ -1,48 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "./LandingPage.module.css";
 import logoImg from "../../assets/logo.png"
-import preview from "../../assets/pg3.gif"
-// import preview2 from "../../assets/small.gif"
-import playIcon from "../../assets/play.png"
-import { tailChase } from 'ldrs'
 import Typewriter from "typewriter-effect";
-import axios from "axios"
-import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const BackgroundsPage = () => {
 
-  const [isLoading, setIsLoading] = useState(true)
-  const [clipPopup, setClipPopup] = useState({
-    isOpened: false,
-    clip: {}
-  })
-  const [clips, setClips] = useState([])
-  const url = "https://pub-70afb9dcfa934980b35e0d79bfed253a.r2.dev"
-
-  tailChase.register()
+  
 
 
-  const handleDownload = async () => {
-    try {
-      const res = await axios.get(`http://localhost:5000/api/download?file=${clipPopup.clip.key}.mp4`);
-
-      console.log(res)
-
-      if (res.data.url) {
-        const link = document.createElement("a");
-        link.href = res.data.url;
-        link.download = true;
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-      }
-    } catch (error) {
-      console.error("Download failed:", error);
-    }
-  };
-
-  useEffect(() => {
+  // fetching clips
+  /* useEffect(() => {
     const fetchClips = async () => {
       try {
         const res = await axios.get(`http://localhost:5000/api/getClipsInfo`);
@@ -59,11 +27,11 @@ const BackgroundsPage = () => {
 
     fetchClips()
 
-  }, [])
+  }, []) */
 
 
   return (
-    <div className={`${styles.wrapper} ${clipPopup.isOpened && styles.noScroll}`}>
+    <div className={styles.wrapper}>
 
       <header>
         <div className={styles.container}>
@@ -119,38 +87,7 @@ const BackgroundsPage = () => {
 
 
 
-        {/* <div className={styles.clips}>
-
-          {clips?.map(el => (
-            <div className={styles.clip}>
-              <div className={styles.clipLoader}>
-                <l-tail-chase
-                  size="42"
-                  speed="1.75"
-                  color="#fff"
-                ></l-tail-chase>
-              </div>
-
-              <video
-                src={`${url}/${el?.key}-preview.mp4`}
-                autoPlay
-                loop
-                muted
-                playsInline
-                className={styles.clipPreview}
-              />
-
-              <div className={styles.clipHover} onClick={() => setClipPopup(prev => ({
-                isOpened: true,
-                clip: el
-              }))}>
-                <img src={playIcon} alt="" className={styles.playIcon} />
-                <span>Watch full clip</span>
-              </div>
-            </div>
-          ))}
-
-        </div> */}
+        
 
         {/* <div className={styles.clip}>
             {isLoading &&
@@ -164,55 +101,9 @@ const BackgroundsPage = () => {
             }
           </div> */}
 
-        <div>
-          <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-        </div>
+
       </div>
 
-      <div className={`${styles.clipPopup} ${clipPopup.isOpened && styles.clipPopupActive}`}>
-        <div className={styles.container}>
-          <button className={styles.clipPopupReturnButton} onClick={() => setClipPopup(prev => ({
-            isOpened: false,
-            clip: {}
-          }))}>Go back</button>
-          <img src={logoImg} alt="" className={styles.clipPopupLogo} />
-
-          <div className={styles.clipPopupInfo}>
-            <video
-              src={`${url}/${clipPopup.clip?.key}.mp4`}
-              autoPlay
-              loop
-              playsInline
-              controls
-              className={styles.clipPopupVideo}
-            />
-
-            <div className={styles.clipPopupInfoText}>
-              <p>Duration: <span>{clipPopup.clip?.duration || ""}</span></p>
-              <p>Authors: <a href={clipPopup.clip?.linkForAuthors || ""} target="_blank">{clipPopup.clip?.authors || ""}</a></p>
-              <p>Resolution: <span>{clipPopup.clip?.resolution || ""}</span></p>
-              <p>Frame rate: <span>{clipPopup.clip?.frameRate || ""} fps</span></p>
-              <p>Format: <span>{clipPopup.clip?.format || ""}</span></p>
-              <p>Aspect Ration: <span>{clipPopup.clip?.aspectRation || ""}</span></p>
-              <p>Size: <span>{clipPopup.clip?.size || ""}</span></p>
-              <p>Sound: <span>{clipPopup.clip?.sound == true ? "Yes" : "No"}</span></p>
-
-              {clipPopup.clip?.description && (
-                <div className={styles.clipPopupDescription}>
-                  <span>Description:</span>
-                  <p>{clipPopup.clip?.description || ""}</p>
-                </div>
-              )}
-
-              <button
-                onClick={handleDownload}
-                className={styles.clipPopupDownloadButton}
-              >Download clip</button>
-
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   );
 };

@@ -3,6 +3,10 @@ const router = express.Router();
 const User = require("../models/user-model")
 const Clip = require("../models/cilp-model")
 const authenticate = require("../middlewares/authMiddleware");
+const { S3Client, GetObjectCommand } = require("@aws-sdk/client-s3");
+const { getSignedUrl } = require("@aws-sdk/s3-request-presigner");
+require("dotenv").config();
+
 // const bcrypt = require("bcrypt");
 // const { generateAccessToken, generateRefreshToken } = require("../utils/jwtUtils");
 // const jwt = require("jsonwebtoken")
@@ -13,6 +17,19 @@ const authenticate = require("../middlewares/authMiddleware");
 
 //   return res.send(devices)
 // })
+
+
+
+// Cloudflare R2 Credentials
+const s3Client = new S3Client({
+  region: "auto",
+  endpoint: process.env.CLOUDFLARE_API_URL,
+  credentials: {
+    accessKeyId: process.env.CLOUDFLARE_R2_ACCESS_KEY_ID,
+    secretAccessKey: process.env.CLOUDFLARE_SECRET_ACCESS_KEY,
+  },
+});
+
 
 // Generate a signed URL for direct download
 router.get("/api/download", authenticate, async (req, res) => {

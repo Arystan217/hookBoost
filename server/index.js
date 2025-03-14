@@ -1,7 +1,5 @@
 const express = require("express");
 const cors = require("cors");
-const { S3Client, GetObjectCommand } = require("@aws-sdk/client-s3");
-const { getSignedUrl } = require("@aws-sdk/s3-request-presigner");
 const mongoose = require("mongoose");
 const uuid = require("uuid")
 const Clip = require("./models/cilp-model")
@@ -23,17 +21,6 @@ app.use(cors({
 
 app.use("/api", authRoutes);
 app.use("", protectedRoutes);
-
-// Cloudflare R2 Credentials
-const s3Client = new S3Client({
-  region: "auto",
-  endpoint: process.env.CLOUDFLARE_API_URL,
-  credentials: {
-    accessKeyId: process.env.CLOUDFLARE_R2_ACCESS_KEY_ID,
-    secretAccessKey: process.env.CLOUDFLARE_SECRET_ACCESS_KEY,
-  },
-});
-
 
 
 
