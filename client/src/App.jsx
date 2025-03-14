@@ -5,6 +5,7 @@ import { Route, Routes } from "react-router-dom"
 import LoginPage from "./components/LoginPage/LoginPage";
 import SignUpPage from "./components/SignUpPage/SignUpPage";
 import MainPage from "./components/MainPage/MainPage";
+import PricingPage from "./components/PricingPage/PricingPage";
 
 const App = () => {
   return (
@@ -12,10 +13,11 @@ const App = () => {
       <Routes>
         <Route element={<LandingPage />} path="/" />
         <Route element={<MainPage />} path="/mainPage" />
+        <Route element={<PricingPage />} path="/pricing" />
         <Route element={<LoginPage />} path="/login" />
         <Route element={<SignUpPage />} path="/signup" />
       </Routes>
-      
+
       {/* <VideoPlayer src="https://pub-70afb9dcfa934980b35e0d79bfed253a.r2.dev/minecraft-parkur-53a8a156-489b-46e7-85f4-c891be033525.mp4" /> */}
     </div>
   );

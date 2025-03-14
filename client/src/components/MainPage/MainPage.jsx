@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "./MainPage.module.css";
 import { smartRequest } from "../../utils/smartRequest";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logoImg from "../../assets/logo.png"
 import playIcon from "../../assets/play.png"
 import { tailChase } from 'ldrs'
@@ -16,7 +16,7 @@ const MainPage = () => {
   const [clips, setClips] = useState([])
 
   const [availableFilters, setAvailableFilters] = useState(["GTA 5", "Pixel Gun 3D", "Minecraft Parkour", "Minecraft Building", "Fortnite", "Forza Horizon"])
-  const [selectedFilters, setSelectedFilters] = useState(["Fortnite"])
+  const [selectedFilters, setSelectedFilters] = useState([""])
 
   const [isLoading, setIsLoading] = useState(true)
   const [clipPopup, setClipPopup] = useState({
@@ -80,95 +80,93 @@ const MainPage = () => {
 
   return (
     <div className={`${styles.wrapper} ${clipPopup.isOpened && styles.noScroll}`}>
-      <div className={styles.container}>
-        <header>
-          <div className={styles.container}>
-            <a className={styles.logo} href="/">
-              <img src={logoImg} alt="" className={styles.logoImg} />
-            </a>
-
-            {/* <a href="mailto: arystan.working@gmail.com" className={styles.headerLink}>contact@hookboost.com</a> */}
-            <div className={styles.headerLinks}>
-              <a to="/login" className={styles.headerLink}>Downloads</a>
-              <a to="/login" className={styles.headerLink}>My profile</a>
-              <a to="/login" className={styles.headerOfferButton}>Upgrade to premium</a>
-            </div>
-          </div>
-        </header>
-
+      <header>
         <div className={styles.container}>
-          <div className={styles.filters}>
-            <div
-              className={`${styles.filter} ${!selectedFilters.length && styles.filterActive}`}
-              onClick={() => {
-                setSelectedFilters([])
-              }}
-            >All</div>
+          <a className={styles.logo} href="/mainPage">
+            <img src={logoImg} alt="" className={styles.logoImg} />
+          </a>
 
-            {availableFilters?.map(fl => (
-              <div
-                className={`${styles.filter} ${selectedFilters.includes(fl) ? styles.filterActive : ""}`}
-                onClick={() => {
-                  if (selectedFilters.includes(fl)) {
-                    setSelectedFilters(selectedFilters.filter(el => el !== fl))
-                  } else {
-                    setSelectedFilters(prev => [...prev, fl])
-                  }
-                }}>
-                {fl}
-              </div>
-            ))}
+          {/* <a href="mailto: arystan.working@gmail.com" className={styles.headerLink}>contact@hookboost.com</a> */}
+          <div className={styles.headerLinks}>
+            <a to="/login" className={styles.headerLink}>Downloads</a>
+            <a to="/login" className={styles.headerLink}>My profile</a>
+            <Link to="/pricing" className={styles.headerOfferButton}>Upgrade to premium</Link>
           </div>
-
-          <h2 className={styles.sectionTitle}>Clips:</h2>
-
-          <div className={styles.clips}>
-
-            {clips?.map(el => (
-              <div className={styles.clip}>
-                <div className={styles.clipLoader}>
-                  <l-tail-chase
-                    size="42"
-                    speed="1.75"
-                    color="#fff"
-                  ></l-tail-chase>
-                </div>
-
-                <video
-                  src={`${url}/${el?.key}-preview.mp4`}
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  className={styles.clipPreview}
-                />
-
-                <div className={styles.clipHover} onClick={() => setClipPopup(prev => ({
-                  isOpened: true,
-                  clip: el
-                }))}>
-                  <img src={playIcon} alt="" className={styles.playIcon} />
-                  <span>Watch full clip</span>
-                </div>
-              </div>
-            ))}
-
-          </div>
-
-          
         </div>
+      </header>
+
+      <div className={styles.container}>
+        <div className={styles.filters}>
+          <div
+            className={`${styles.filter} ${!selectedFilters.length && styles.filterActive}`}
+            onClick={() => {
+              setSelectedFilters([])
+            }}
+          >All</div>
+
+          {availableFilters?.map(fl => (
+            <div
+              className={`${styles.filter} ${selectedFilters.includes(fl) ? styles.filterActive : ""}`}
+              onClick={() => {
+                if (selectedFilters.includes(fl)) {
+                  setSelectedFilters(selectedFilters.filter(el => el !== fl))
+                } else {
+                  setSelectedFilters(prev => [...prev, fl])
+                }
+              }}>
+              {fl}
+            </div>
+          ))}
+        </div>
+
+        <h2 className={styles.sectionTitle}>Clips:</h2>
+
+        <div className={styles.clips}>
+
+          {clips?.map(el => (
+            <div className={styles.clip}>
+              <div className={styles.clipLoader}>
+                <l-tail-chase
+                  size="42"
+                  speed="1.75"
+                  color="#fff"
+                ></l-tail-chase>
+              </div>
+
+              <video
+                src={`${url}/${el?.key}-preview.mp4`}
+                autoPlay
+                loop
+                muted
+                playsInline
+                className={styles.clipPreview}
+              />
+
+              <div className={styles.clipHover} onClick={() => setClipPopup(prev => ({
+                isOpened: true,
+                clip: el
+              }))}>
+                <img src={playIcon} alt="" className={styles.playIcon} />
+                <span>Watch full clip</span>
+              </div>
+            </div>
+          ))}
+
+        </div>
+
 
       </div>
 
 
-      
+
+
       <div className={`${styles.clipPopup} ${clipPopup.isOpened && styles.clipPopupActive}`}>
         <div className={styles.container}>
           <button className={styles.clipPopupReturnButton} onClick={() => setClipPopup(prev => ({
             isOpened: false,
             clip: {}
           }))}>Go back</button>
-          <img src={logoImg} alt="" className={styles.clipPopupLogo} />
+          <Link to="/mainPage"><img src={logoImg} alt="" className={styles.clipPopupLogo} /></Link>
 
           <div className={styles.clipPopupInfo}>
             <video
@@ -208,8 +206,8 @@ const MainPage = () => {
       </div>
 
       <div>
-          <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-        </div>
+        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+      </div>
     </div>
   );
 };
