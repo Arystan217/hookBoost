@@ -51,16 +51,16 @@ const DownloadsPage = () => {
       <div className={styles.downloads}>
         <div className={styles.container}>
 
-          {isLoading ? (
-            <div className={styles.loader}>
-              <l-tail-chase
-                size="52"
-                speed="1.75"
-                color="#fff"
-              ></l-tail-chase>
-            </div>
-          ) : (
-            <>
+
+          <div className={`${styles.loader} ${isLoading && styles.loaderVisible}`}>
+            <l-tail-chase
+              size="52"
+              speed="1.75"
+              color="#fff"
+            ></l-tail-chase>
+          </div>
+
+          <div className={`${styles.fadingContent} ${!isLoading && styles.fadingContentVisible}`}>
               {(!isLoading && !clips.length) ? (
                 <div className={styles.noContent}>You haven't downloaded any clips yet. <Link to="/mainPage">Let's start exploring!</Link></div>
               ) : (
@@ -101,8 +101,7 @@ const DownloadsPage = () => {
                 </>
               )
               }
-            </>
-          )}
+            </div>
 
 
         </div>

@@ -9,7 +9,7 @@
   max-width: 1350px;
   margin: 0 auto;
   padding: 0 15px;
-  position: relative;
+  /* position: relative; */
 }
 
 .filters {
@@ -288,4 +288,28 @@
 .clipPopupDownloadButton:hover {
   background-position: 100% 0;
   box-shadow: 0 0 20px rgba(40, 192, 240, 0.6)
+}
+
+
+.fadingContent {
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.5s ease;
+}
+.fadingContentVisible {
+  opacity: 1;
+  visibility: visible;
+}
+.loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s ease;
+}
+.loaderVisible {
+  opacity: 1;
+  visibility: visible;
 }

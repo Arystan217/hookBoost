@@ -41,8 +41,10 @@ const MainPage = () => {
         console.log(res)
 
         setClips(res.data)
+        setIsLoading(false)
       } catch (e) {
         console.log(e)
+        setIsLoading(false)
       }
     }
 
@@ -85,63 +87,76 @@ const MainPage = () => {
       <AuthorizedHeader />
 
       <div className={styles.container}>
-        <div className={styles.filters}>
-          <div
-            className={`${styles.filter} ${selectedFilters.length == 0 && styles.filterActive}`}
-            onClick={() => {
-              setSelectedFilters([])
-            }}
-          >All</div>
 
-          {availableFilters?.map(fl => (
+        <div className={`${styles.loader} ${isLoading && styles.loaderVisible}`}>
+          <l-tail-chase
+            size="52"
+            speed="1.75"
+            color="#fff"
+          ></l-tail-chase>
+        </div>
+
+        <div className={`${styles.fadingContent} ${!isLoading && styles.fadingContentVisible}`}>
+          <div className={styles.filters}>
             <div
-              className={`${styles.filter} ${selectedFilters.includes(fl) ? styles.filterActive : ""}`}
+              className={`${styles.filter} ${selectedFilters.length == 0 && styles.filterActive}`}
               onClick={() => {
-                if (selectedFilters.includes(fl)) {
-                  setSelectedFilters(selectedFilters.filter(el => el !== fl))
-                } else {
-                  setSelectedFilters(prev => [...prev, fl])
-                }
-              }}>
-              {fl}
-            </div>
-          ))}
+                setSelectedFilters([])
+              }}
+            >All</div>
+
+            {availableFilters?.map(fl => (
+              <div
+                className={`${styles.filter} ${selectedFilters.includes(fl) ? styles.filterActive : ""}`}
+                onClick={() => {
+                  if (selectedFilters.includes(fl)) {
+                    setSelectedFilters(selectedFilters.filter(el => el !== fl))
+                  } else {
+                    setSelectedFilters(prev => [...prev, fl])
+                  }
+                }}>
+                {fl}
+              </div>
+            ))}
+          </div>
+
+          <h2 className={styles.sectionTitle}>Clips:</h2>
+
+          <div className={styles.clips}>
+
+            {clips?.map(el => (
+              <div className={styles.clip}>
+                <div className={styles.clipLoader}>
+                  <l-tail-chase
+                    size="42"
+                    speed="1.75"
+                    color="#fff"
+                  ></l-tail-chase>
+                </div>
+
+                <video
+                  src={`${url}/${el?.key}-preview.mp4`}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className={styles.clipPreview}
+                />
+
+                <div className={styles.clipHover} onClick={() => setClipPopup(prev => ({
+                  isOpened: true,
+                  clip: el
+                }))}>
+                  <img src={playIcon} alt="" className={styles.playIcon} />
+                  <span>Watch full clip</span>
+                </div>
+              </div>
+            ))}
+
+          </div>
         </div>
 
-        <h2 className={styles.sectionTitle}>Clips:</h2>
 
-        <div className={styles.clips}>
-
-          {clips?.map(el => (
-            <div className={styles.clip}>
-              <div className={styles.clipLoader}>
-                <l-tail-chase
-                  size="42"
-                  speed="1.75"
-                  color="#fff"
-                ></l-tail-chase>
-              </div>
-
-              <video
-                src={`${url}/${el?.key}-preview.mp4`}
-                autoPlay
-                loop
-                muted
-                playsInline
-                className={styles.clipPreview}
-              />
-
-              <div className={styles.clipHover} onClick={() => setClipPopup(prev => ({
-                isOpened: true,
-                clip: el
-              }))}>
-                <img src={playIcon} alt="" className={styles.playIcon} />
-                <span>Watch full clip</span>
-              </div>
-            </div>
-          ))}
-
-        </div>
 
 
       </div>

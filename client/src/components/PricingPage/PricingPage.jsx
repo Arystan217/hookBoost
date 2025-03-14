@@ -14,7 +14,7 @@ const PricingPage = () => {
 
             <h1 className={styles.offerTitle}>Unlock Viral Potential with Visual Hooks</h1>
             <p className={styles.offerSubtitle}>
-              Want your short videos to go viral? Eye-catching visuals keep viewers watching longer. With HookBoost Premium, you'll access a massive library of dynamic, satisfying, and engaging clips designed to make your content unskippable. Boost retention, drive engagement, and stand out from the crowd — all with just a few clicks.
+              Want your short videos to go viral? Eye-catching visuals keep viewers watching longer. With HookBoost Premium and Ultimate, you'll access a massive library of dynamic, satisfying, and engaging clips designed to make your content unskippable. Boost retention, drive engagement, and stand out from the crowd — all with just a few clicks.
             </p>
           </div>
 
