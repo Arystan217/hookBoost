@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./SignUpPage.module.css";
 import hideIcon from "../../assets/hide.png"
 import showIcon from "../../assets/show.png"
@@ -6,6 +6,7 @@ import logoImg from "../../assets/logo.png"
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { tailChase } from 'ldrs'
+import { smartRequest } from "../../utils/smartRequest";
 
 const SignUpPage = () => {
 
@@ -18,6 +19,29 @@ const SignUpPage = () => {
   const [showPassword, setShowPassword] = useState(false)
   const [errorMsg, setErrorMsg] = useState("")
   const [isLoading, setIsLoading] = useState(false)
+
+  useEffect(() => {
+    // check auth
+    const checkAuth = async () => {
+      try {
+        const res = await smartRequest({
+          method: "GET",
+          endpoint: "api/getUserDownloads",
+          payload: {},
+          headers: {
+            // "ngrok-skip-browser-warning": "69420",
+          },
+          navigate
+        })
+
+        console.log("authorized");
+        navigate("/mainPage")
+      } catch (e) {
+      }
+    }
+
+    checkAuth()
+  }, [])
 
   const loginHandler = async e => {
     e.preventDefault();

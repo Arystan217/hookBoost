@@ -1,8 +1,13 @@
 const jwt = require('jsonwebtoken');
 const User = require("../models/user-model")
+require("dotenv").config();
 
 const authenticate = async (req, res, next) => {
   const authHeader = req.headers.authorization;
+
+  if (!req.headers.origin || req.headers.origin !== process.env.FRONT_URL) {
+    return res.status(403).json({ error: "Forbidden request!" });
+  }
 
   if (!authHeader || !authHeader.split(" ")[0] == "Bearer") {
     return res.status(401).json({ message: 'Access token is missing or invalid' });

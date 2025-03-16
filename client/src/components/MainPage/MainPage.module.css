@@ -160,7 +160,9 @@
   transition: all 0.65s ease;
   overflow-y: auto;
 }
-
+.clipPopup .container {
+  position: relative;
+}
 .clipPopupActive {
   opacity: 1;
   visibility: visible;
@@ -294,7 +296,7 @@
 .fadingContent {
   opacity: 0;
   visibility: hidden;
-  transition: all 0.5s ease;
+  transition: all 0.7s ease;
 }
 .fadingContentVisible {
   opacity: 1;

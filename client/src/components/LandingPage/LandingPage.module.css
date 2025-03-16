@@ -47,7 +47,7 @@ header .container {
   font-size: 17.5px;
   letter-spacing: 0.2px;
   margin-left: 22px;
-  padding: 5px 12px 6px;
+  padding: 5px 15px 6px;
   letter-spacing: 1px;
   border-radius: 5.5px;
   border: none;
@@ -80,7 +80,7 @@ header .container {
   display: inline-block;
   color: #2BABEA;
   font-size: 60px;
-  margin-top: 180px;
+  margin-top: 100px;
   letter-spacing: 0.7px;
   font-weight: 700;
   text-shadow: 0 0 25px rgba(48, 145, 229, 0.3);
@@ -146,7 +146,7 @@ header .container {
 }
 
 .heroButton {
-  font-size: 21px;
+  font-size: 19px;
   margin-top: 35px;
   padding: 13px 40px 15px;
   letter-spacing: 1px;
@@ -168,31 +168,39 @@ header .container {
   background-position: 100% 0;
   box-shadow: 0 0 24px rgba(40, 192, 240, 0.8)
 }
+.belowHeroButtonText {
+  text-align: center;
+  margin-top: 7px;
+  opacity: 0.22;
+  letter-spacing: 0.3px;
+  font-size: 13px;
+  font-style: italic;
+}
 
 .blurredBg {
   position: absolute;
-  filter: blur(90px);
+  filter: blur(100px);
   border-radius: 50%;
   z-index: 1;
 }
 
 .blob1 {
-  top: 48vh;
-  right: -50px;
-  width: 450px;
-  height: 390px;
-  background: #132F59;
-  animation: blob-move-rotated 7.5s ease-in-out infinite alternate;
-}
-
-.blob2 {
-  top: 3vh;
+  top: 2vh;
   left: -35px;
-  width: 150px;
-  height: 290px;
+  width: 200px;
+  height: 420px;
   background: #193F77;
   transform: rotateZ(149deg);
   animation: blob-move 6s ease-in-out infinite alternate;
+}
+
+.blob2 {
+  top: 48vh;
+  right: -50px;
+  width: 490px;
+  height: 390px;
+  background: #132F59;
+  animation: blob-move-rotated 7.5s ease-in-out infinite alternate;
 }
 
 @keyframes blob-move {
@@ -238,4 +246,140 @@ header .container {
   100% {
     transform: rotateZ(149deg) translate(0px, 0px) scale(1);
   }
+}
+
+
+.problem {
+  margin-top: 120px;
+}
+.problemContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.problemContentLeft {
+  width: 50%;
+}
+.sectionTitle {
+  font-size: 29px;
+  font-weight: 500;
+  opacity: 0.9;
+  margin-bottom: 24px;
+}
+.sectionText {
+  margin-bottom: 9px;
+  font-size: 17px;
+  color: #A9AFB6;
+  letter-spacing: 0.3px;
+}
+.sectionText b {
+  font-weight: 500;
+  color: #D4DBE4;
+}
+.problemContentRight {
+  width: 50%;
+  padding-left: 50px;
+  padding-top: 20px;
+  box-sizing: border-box;
+}
+.problemContentRight p {
+  font-size: 16px;
+  letter-spacing: 0.4px;
+  margin-bottom: 15px;
+}
+.problemContentRight img {
+  width: 100%;
+  max-height: 500px;
+  object-fit: contain;
+  border-radius: 15px;
+  box-shadow: 0 0 18px rgba(10, 25, 47, 0.775);
+}
+
+
+.struggle {
+  margin-top: 120px;
+}
+.struggleTitle {
+  text-align: center;
+  font-size: 32px;
+  font-weight: 500;
+  opacity: 0.9;
+}
+.struggleSubtitle {
+  text-align: center;
+  margin-top: 6px;
+  opacity: 0.4;
+  font-weight: 300;
+  font-size: 17px;
+  margin-bottom: 28px;
+}
+.struggleContent {
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.struggleItem {
+  width: calc(50% - 10px);
+  box-sizing: border-box;
+  padding: 15px;
+  background: #132847;
+  border-radius: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 0 14px rgba(4, 10, 20, 0.2);
+  margin-bottom: 20px;
+}
+.struggleItemIcon {
+  width: 60px;
+}
+.struggleItemInfo {
+  margin-left: 12px;
+}
+.struggleItemTitle {
+  font-size: 19px;
+  font-weight: 500;
+  letter-spacing: 0.9px;
+  opacity: 0.9;
+}
+.struggleItemText {
+  margin-top: 3px;
+  opacity: 0.7;
+  font-weight: 300;
+}
+/* .backgroundsContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.backgroundsRight {
+  width: 50%;
+}
+.backgroundsLeft {
+  width: 50%;
+}
+.backgroundsLeft img {
+  width: 80%;
+} */
+
+
+.solution {
+  margin-top: 120px;
+}
+.solutionContentRight {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.solutionContentRight img {
+  margin-right: 45px;
+  max-height: 500px;
+  object-fit: contain;
+  border-radius: 15px;
+  box-shadow: 0 0 18px rgba(10, 25, 47, 0.775);
+}
+.solutionContentRight img:last-child {
+  margin-right: 0;
 }

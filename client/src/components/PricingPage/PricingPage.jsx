@@ -21,7 +21,7 @@ const PricingPage = () => {
           <div className={styles.tariffs}>
             <div className={styles.tariff}>
               <p className={styles.tariffName}>Free</p>
-              <p className={styles.tariffPrice}>0<span>$</span></p>
+              <p className={styles.tariffPrice}>$0<span></span></p>
 
               <div className={styles.tariffOptions}>
                 <div className={styles.tariffOption}>3 downloads per day</div>
@@ -35,7 +35,7 @@ const PricingPage = () => {
 
             <div className={styles.tariff}>
               <p className={styles.tariffName}>Premium</p>
-              <p className={styles.tariffPrice}>12.50<span>$</span></p>
+              <p className={styles.tariffPrice}>$12.50<span>/mo</span></p>
 
               <div className={styles.tariffOptions}>
                 <div className={styles.tariffOption}>275 downloads per month</div>
@@ -51,7 +51,7 @@ const PricingPage = () => {
 
             <div className={styles.tariff}>
               <p className={styles.tariffName}>Ultimate</p>
-              <p className={styles.tariffPrice}>29.95<span>$</span></p>
+              <p className={styles.tariffPrice}>$29.95<span>/mo</span></p>
 
               <div className={styles.tariffOptions}>
                 <div className={styles.tariffOption}>1000 downloads per month</div>

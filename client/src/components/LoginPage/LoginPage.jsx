@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./LoginPage.module.css";
 import hideIcon from "../../assets/hide.png"
 import showIcon from "../../assets/show.png"
@@ -6,6 +6,7 @@ import logoImg from "../../assets/logo.png"
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { tailChase } from 'ldrs'
+import { smartRequest } from "../../utils/smartRequest";
 
 const LoginPage = () => {
 
@@ -18,6 +19,29 @@ const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false)
   const [errorMsg, setErrorMsg] = useState("")
   const [isLoading, setIsLoading] = useState(false)
+
+  useEffect(() => {
+    // check auth
+    const checkAuth = async () => {
+      try {
+        const res = await smartRequest({
+          method: "GET",
+          endpoint: "api/getUserDownloads",
+          payload: {},
+          headers: {
+            // "ngrok-skip-browser-warning": "69420",
+          },
+          navigate
+        })
+
+        console.log("authorized");
+        navigate("/mainPage")
+      } catch (e) {
+      }
+    }
+
+    checkAuth()
+  }, [])
 
   const loginHandler = async e => {
     e.preventDefault();
@@ -38,7 +62,7 @@ const LoginPage = () => {
 
 
       console.log(res)
-      
+
       navigate("/mainPage")
 
       setIsLoading(false)
@@ -82,7 +106,7 @@ const LoginPage = () => {
               <label htmlFor="password">Password</label>
               <img
                 onClick={() => setShowPassword(!showPassword)}
-                src={showPassword ? showIcon : hideIcon }
+                src={showPassword ? showIcon : hideIcon}
                 className={styles.showPassword}
                 title={showPassword ? 'Скрыть пароль' : 'Показать пароль'}
               />
@@ -93,10 +117,10 @@ const LoginPage = () => {
             <button className={`${styles.submitButton} ${isLoading && styles.submitButtonLoading}`} onClick={e => loginHandler(e)}>
               {isLoading ? (
                 <l-tail-chase
-                size="35"
-                speed="1.75" 
-                color="#fff" 
-              ></l-tail-chase>
+                  size="35"
+                  speed="1.75"
+                  color="#fff"
+                ></l-tail-chase>
               ) : "Log in"}
             </button>
 

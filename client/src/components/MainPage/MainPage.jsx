@@ -10,6 +10,20 @@ import AuthorizedHeader from "../AuthorizedHeader/AuthorizedHeader";
 
 const MainPage = () => {
 
+  // forbid inspecting code
+  /* document.addEventListener("contextmenu", (e) => e.preventDefault());
+  document.addEventListener("keydown", (e) => {
+    if (
+      e.key === "F12" ||
+      (e.ctrlKey && e.shiftKey && e.key === "I") ||
+      (e.ctrlKey && e.key === "u") ||
+      (e.ctrlKey && e.key === "s")
+    ) {
+      e.preventDefault();
+    }
+  }); */
+
+
   const navigate = useNavigate()
   tailChase.register()
 

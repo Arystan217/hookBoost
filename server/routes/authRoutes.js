@@ -4,7 +4,7 @@ const User = require("../models/user-model")
 const jwt = require("jsonwebtoken")
 const bcrypt = require('bcryptjs');
 const { generateAccessToken, generateRefreshToken } = require("../utils/jwtUtils");
-
+const authenticate = require("../middlewares/authMiddleware");
 
 router.post("/login", async (req, res) => {
   try {
@@ -117,6 +117,11 @@ router.post('/logout', (req, res) => {
   console.log("user wants to logout")
   res.clearCookie('hookBoostRefreshToken');
   return res.status(200).json({ message: 'Logged out successfully' });
+});
+
+router.post('/checkAuth', authenticate, (req, res) => {
+  console.log("user is authorized")
+  return res.status(200);
 });
 
 module.exports = router;
