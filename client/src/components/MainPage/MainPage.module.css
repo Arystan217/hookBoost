@@ -53,6 +53,11 @@
   z-index: 5;
   display: flex;
   flex-wrap: wrap;
+  transition: all 0.2s ease;
+  opacity: 1;
+}
+.clipsLoading {
+  opacity: 0;
 }
 
 .clip {
@@ -70,6 +75,9 @@
 
 .clip:nth-child(4n+1) {
   border-radius: 20px 0 0 20px;
+}
+.clip:nth-child(4n+4) {
+  border-radius: 0px 20px 20px 0px;
 }
 
 .clip:nth-child(1),

@@ -3,6 +3,7 @@ const {Schema, model} = require("mongoose")
 const ClipModel = new Schema({
   key: {type: String, required: true},
   gifPreviewLink: {type: String, required: false},
+  genre: {type: String, required: false},
   fullVideoLink: {type: String, required: false},
   duration: {type: String, required: true},
   authors: {type: String, required: true},

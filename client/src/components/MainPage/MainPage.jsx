@@ -30,10 +30,13 @@ const MainPage = () => {
   const url = "https://pub-70afb9dcfa934980b35e0d79bfed253a.r2.dev"
   const [clips, setClips] = useState([])
 
-  const [availableFilters, setAvailableFilters] = useState(["GTA 5", "Pixel Gun 3D", "Minecraft Parkour", "Minecraft Building", "Fortnite", "Forza Horizon"])
-  const [selectedFilters, setSelectedFilters] = useState([])
+  const [filteredClips, setFilteredClips] = useState([])
+
+  const [availableFilters, setAvailableFilters] = useState([/* "GTA 5" */, "Steep", "Minecraft Parkour", /* "Minecraft Building" */, "Fortnite", /* "Forza Horizon" */])
+  const [selectedFilter, setSelectedFilter] = useState("")
 
   const [isLoading, setIsLoading] = useState(true)
+  const [areClipsLoading, setAreClipsLoading] = useState(false)
   const [clipPopup, setClipPopup] = useState({
     isOpened: false,
     clip: {}
@@ -55,6 +58,7 @@ const MainPage = () => {
         console.log(res)
 
         setClips(res.data)
+        setFilteredClips(res.data)  // assuming that initial filter is always "All"
         setIsLoading(false)
       } catch (e) {
         console.log(e)
@@ -95,6 +99,17 @@ const MainPage = () => {
     }
   };
 
+  const filterHandler = filter => {
+    setAreClipsLoading(true)
+    setSelectedFilter(filter)
+
+    setFilteredClips(clips.filter(clip => clip?.genre.toLowerCase() === filter.toLowerCase()))
+
+    setTimeout(() => {
+      setAreClipsLoading(false)
+    }, 200);
+  }
+
 
   return (
     <div className={`${styles.wrapper} ${clipPopup.isOpened && styles.noScroll}`}>
@@ -113,22 +128,21 @@ const MainPage = () => {
         <div className={`${styles.fadingContent} ${!isLoading && styles.fadingContentVisible}`}>
           <div className={styles.filters}>
             <div
-              className={`${styles.filter} ${selectedFilters.length == 0 && styles.filterActive}`}
+              className={`${styles.filter} ${!selectedFilter && styles.filterActive}`}
               onClick={() => {
-                setSelectedFilters([])
+                setAreClipsLoading(true)
+                setSelectedFilter("");
+                setFilteredClips(clips)
+                setTimeout(() => {
+                  setAreClipsLoading(false)
+                }, 200);
               }}
             >All</div>
 
             {availableFilters?.map(fl => (
               <div
-                className={`${styles.filter} ${selectedFilters.includes(fl) ? styles.filterActive : ""}`}
-                onClick={() => {
-                  if (selectedFilters.includes(fl)) {
-                    setSelectedFilters(selectedFilters.filter(el => el !== fl))
-                  } else {
-                    setSelectedFilters(prev => [...prev, fl])
-                  }
-                }}>
+                className={`${styles.filter} ${selectedFilter == fl ? styles.filterActive : ""}`}
+                onClick={() => filterHandler(fl)}>
                 {fl}
               </div>
             ))}
@@ -136,10 +150,21 @@ const MainPage = () => {
 
           <h2 className={styles.sectionTitle}>Clips:</h2>
 
-          <div className={styles.clips}>
+          {/* <div className={`${styles.loader} ${areClipsLoading && styles.loaderVisible}`}>
+            <l-tail-chase
+              size="52"
+              speed="1.75"
+              color="#fff"
+            ></l-tail-chase>
+          </div> */}
 
-            {clips?.map(el => (
-              <div className={styles.clip}>
+          <div className={`${styles.clips} ${areClipsLoading && styles.clipsLoading}`}>
+
+            {filteredClips?.map(el => (
+              <div className={styles.clip} onClick={() => setClipPopup(prev => ({
+                isOpened: true,
+                clip: el
+              }))}>
                 <div className={styles.clipLoader}>
                   <l-tail-chase
                     size="42"
@@ -157,10 +182,7 @@ const MainPage = () => {
                   className={styles.clipPreview}
                 />
 
-                <div className={styles.clipHover} onClick={() => setClipPopup(prev => ({
-                  isOpened: true,
-                  clip: el
-                }))}>
+                <div className={styles.clipHover}>
                   <img src={playIcon} alt="" className={styles.playIcon} />
                   <span>Watch full clip</span>
                 </div>

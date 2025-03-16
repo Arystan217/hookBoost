@@ -2,6 +2,11 @@
 
 }
 
+.noScroll {
+  max-height: 100vh;
+  overflow: hidden;
+}
+
 .container {
   max-width: 1350px;
   margin: 0 auto;
@@ -41,6 +46,9 @@
 
 .clip:nth-child(4n+1) {
   border-radius: 20px 0 0 20px;
+}
+.clip:nth-child(4n+4) {
+  border-radius: 0px 20px 20px 0px;
 }
 
 .clip:nth-child(1),
