@@ -16,7 +16,7 @@ app.use(express.json());
 
 app.use(cors({
   origin: process.env.FRONT_URL,
-  credentials: true, 
+  credentials: true,
 }));
 
 app.use("/api", authRoutes);
@@ -55,11 +55,12 @@ app.post("/addClip", async (req, res) => {
       resolution: data.resolution,
       sound: data.sound,
       description: data.description,
+      genre: data.genre
     })
 
     await newClip.save()
 
-    return res.json({message: "success"})
+    return res.json({ message: "success" })
 
   } catch (e) {
     res.send("error happened")

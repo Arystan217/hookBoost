@@ -13,6 +13,8 @@ import resolutionIcon from "../../assets/resolution.png"
 import storageIcon from "../../assets/storage.png"
 import exampleImage from "../../assets/example3.png"
 import exampleImage2 from "../../assets/example4.png"
+import colorTuningImage from "../../assets/colorTuning.png"
+import vastLibraryImage from "../../assets/vastLibrary.png"
 
 
 const BackgroundsPage = () => {
@@ -52,8 +54,8 @@ const BackgroundsPage = () => {
 
           {/* <a href="mailto: arystan.working@gmail.com" className={styles.headerLink}>contact@hookboost.com</a> */}
           <div className={styles.headerLinks}>
-            <Link to="/login" className={styles.headerLink}>Sign in</Link>
-            <Link to="/signup" className={styles.headerOfferButton}>Try for free</Link>
+            {/* <Link to="/login" className={styles.headerLink}>Sign in</Link> */}
+            <a /* to="/signup" */ href="https://forms.gle/6KjigUyzA5zhbXBXA" target="_blank" className={styles.headerOfferButton}>Join waitlist</a>
           </div>
         </div>
       </header>
@@ -82,6 +84,7 @@ const BackgroundsPage = () => {
               />
             </span>
             {" "}
+            <div className={styles.br}></div>
             <span className={styles.underline}>unskippable</span>
             {/* Hook Your Viewers' Attention */}
           </h1>
@@ -90,37 +93,35 @@ const BackgroundsPage = () => {
             {/* Hook More Views with Eye-catching parallel videos. Choose from wide variety of visuals that boost retention and make your short videos unskippable. */}
           </p>
 
-          <Link to="/signup" className={styles.heroButton}>Boost engagement today!</Link>
-          <p className={styles.belowHeroButtonText}>No credit card required</p>
+          <a /* to="/signup" */ href="https://forms.gle/6KjigUyzA5zhbXBXA" target="_blank" className={styles.heroButton}>Join the waitlist today!</a>
+          <p className={styles.belowHeroButtonText}>{/* No credit card required */}Launching in Mid-Spring 2025</p>
         </div>
 
         <div className={styles.problem}>
           <div className={styles.problemContent}>
             <div className={styles.problemContentLeft}>
               <h3 className={styles.sectionTitle}>
-                Why Your Videos Aren’t Getting the Views They Deserve
+                What is a background video and how it's helpful?
               </h3>
               <p className={styles.sectionText}>
-                {/* In today’s world of endless scrolling, <b>grabbing attention in the first few seconds is everything</b>. But making engaging content isn’t just about the main footage—you need the perfect background to hook viewers instantly. */}
-                {/* Going viral is harder than ever. With 3.7 million short videos uploaded daily, standing out is a real challenge. Studies show that the average attention span of modern platforms (TikTok, Reels, Shorts) is <b>approximately 3-5 seconds.</b> If your video <b>doesn’t grab attention immediately, it gets lost in the scroll.</b> */}
-                {/* Going viral is harder than ever. With 3.7 million short videos uploaded daily, standing out is a real challenge.  */}With endless content on TikTok, Reels, and Shorts, viewers <b>decide within 3-5 seconds</b> whether to keep watching or scroll past. Miss that moment and your video gets scrolled.
+                With endless content flooding TikTok, Reels, and Shorts, viewers <b>decide within 3-5 seconds</b> whether to keep watching or scroll past. If you miss that moment, your video gets scrolled.
               </p>
               <p className={styles.sectionText}>
-                {/* That’s why we created <b>HookBoost – to make your videos impossible to ignore.</b> */}
-                That’s why using <b>easy-to-watch background videos</b> is key—they boost watch time and engagement, helping the algorithm push your content to more viewers. It's not just a detail—it’s <b>a game-changer for growth</b>.
+                That's where background videos come in. These <b>dynamic, easy-to-watch visuals</b> play alongside your main content, instantly capturing attention and keeping viewers engaged.
+              </p>
+              <p className={styles.sectionText}>
+                By holding attention longer and boosting engagement, background videos signal to the algorithm that your content is worth showing to more people. It’s not just a detail - it’s a <b>powerful tool for growth</b>.
               </p>
             </div>
 
             <div className={styles.problemContentRight}>
-              {/* <p>Searching for the right engaging background video takes hours.</p>
-              <p>Cropping, editing, and resizing is frustrating.</p>
-              <p>Viewers leave if your content isn’t visually engaging from the start.</p> */}
+
               <img src={viewersImage} alt="" />
             </div>
           </div>
         </div>
 
-        
+
         <div className={styles.struggle}>
           <h3 className={styles.struggleTitle}>The Struggle of Finding the Perfect Background video</h3>
           <h3 className={styles.struggleSubtitle}>Getting a high-quality, engaging background video isn’t easy. Here’s why it’s a hassle <br /> without HookBoost:</h3>
@@ -167,65 +168,91 @@ const BackgroundsPage = () => {
           <div className={styles.problemContent}>
             <div className={styles.problemContentLeft}>
               <h3 className={styles.sectionTitle}>
-                Why Your Videos Aren’t Getting the Views They Deserve
+                HookBoost’s Smart Approach to Background Videos
               </h3>
               <p className={styles.sectionText}>
-                {/* In today’s world of endless scrolling, <b>grabbing attention in the first few seconds is everything</b>. But making engaging content isn’t just about the main footage—you need the perfect background to hook viewers instantly. */}
-                {/* Going viral is harder than ever. With 3.7 million short videos uploaded daily, standing out is a real challenge. Studies show that the average attention span of modern platforms (TikTok, Reels, Shorts) is <b>approximately 3-5 seconds.</b> If your video <b>doesn’t grab attention immediately, it gets lost in the scroll.</b> */}
-                {/* Going viral is harder than ever. With 3.7 million short videos uploaded daily, standing out is a real challenge.  */}With endless content on TikTok, Reels, and Shorts, viewers <b>decide within 3-5 seconds</b> whether to keep watching or scroll past. Miss that moment and your video gets scrolled.
+                At HookBoost, we don’t just provide background videos - <b>we deliver retention-optimized clips</b> designed to keep viewers hooked. Every video in our library is carefully filtered and tested to ensure <b>it maximizes watch time and engagement.</b>
               </p>
               <p className={styles.sectionText}>
-                {/* That’s why we created <b>HookBoost – to make your videos impossible to ignore.</b> */}
-                That’s why using <b>easy-to-watch background videos</b> is key—they boost watch time and engagement, helping the algorithm push your content to more viewers. It's not just a detail—it’s <b>a game-changer for growth</b>.
+                No more guessing which clips work - we’ve done the hard work for you, saving you hours of trial and error.
               </p>
             </div>
 
             <div className={styles.solutionContentRight}>
-              {/* <p>Searching for the right engaging background video takes hours.</p>
-              <p>Cropping, editing, and resizing is frustrating.</p>
-              <p>Viewers leave if your content isn’t visually engaging from the start.</p> */}
               <img src={exampleImage} alt="" />
               <img src={exampleImage2} alt="" />
             </div>
           </div>
         </div>
 
-        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+        <div className={styles.perfection}>
+          <div className={styles.problemContent}>
+            <div className={styles.sectionImageWrapper}>
+              <img src={colorTuningImage} alt="" />
+            </div>
 
-        
-        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-                
+            <div className={styles.problemContentLeft}>
+              <h3 className={styles.sectionTitle}>
+                Perfection in Every Detail
+              </h3>
+              <p className={styles.sectionText}>
+                Our team obsessively reviews every second of every clip, cutting out unengaging moments and fine-tuning color balance to make visuals charming. This attention to detail ensures <b>nothing disrupts the viewer’s attention</b>, keeping their eyes glued to your content.
+              </p>
+              <p className={styles.sectionText}>
+                With HookBoost, you’re not just adding a background - <b>you’re creating an uninterrupted, captivating experience.</b>
+              </p>
+            </div>
+          </div>
+        </div>
 
-        
+        <div className={styles.solution}>
+          <div className={styles.problemContent}>
+            <div className={styles.problemContentLeft}>
+              <h3 className={styles.sectionTitle}>
+                Stand out from the crowd
+              </h3>
+              <p className={styles.sectionText}>
+                HookBoost offers a vast and diverse library of background videos with multiple types of genres <b>to keep your channel fresh and engaging.</b> No two TikToks will look the same, giving your audience something new to love every time.
+              </p>
+            </div>
 
+            <div className={styles.sectionImageWrapper}>
+              <img src={vastLibraryImage} alt="" />
+            </div>
+          </div>
+        </div>
 
-        <div className={styles.asdf}></div>
+        <div className={styles.cta}>
+          <h3 className={styles.ctaTitle}>Ready to Dominate TikTok, Reels, and Shorts?</h3>
+          <p className={styles.ctaSubtitle}>Start creating unskippable content today!</p>
 
-
-
-
-
-
-
-
-        {/* <div className={styles.clip}>
-            {isLoading &&
-              <div className={styles.clipLoader}>
-                <l-tail-chase
-                  size="42"
-                  speed="1.75"
-                  color="#fff"
-                ></l-tail-chase>
-              </div>
-            }
-          </div> */}
-
-        <div>
-          <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+          {/* <a className={styles.ctaButton}>!</a> */}
+          {/* <Link to="/signup" className={styles.heroButton}>Boost engagement today!Join the waitlist today</Link> */}
+          <a /* to="/signup" */ href="https://forms.gle/6KjigUyzA5zhbXBXA" target="_blank" className={styles.heroButton}>Join the waitlist today!</a>
+          <p className={styles.belowHeroButtonText}>{/* No credit card required */}Launching in Mid-Spring 2025</p>
         </div>
 
 
       </div>
+
+      <footer>
+        <div className={styles.container}>
+          <div className={styles.footerCompany}>
+            <img src={logoImg} alt="" className={styles.footerLogo} />
+
+            <p>The ultimate source for eye-catching, high-retention video clips.</p>
+          </div>
+
+          <p className={styles.reserved}>©2025 HookBoost. All rights reserved.</p>
+
+          <div className={styles.footerContact}>
+            <p className={styles.footerContactTitle}>Contact Us</p>
+            <p className={styles.footerContactSubtitle}>Have questions or need support? Reach out at:</p>
+            <a href="mailto:arystan.working@gmail.com">arystan.working@gmail.com</a>
+          </div>
+        </div>
+
+      </footer>
 
     </div>
   );

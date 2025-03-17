@@ -32,7 +32,7 @@ const MainPage = () => {
 
   const [filteredClips, setFilteredClips] = useState([])
 
-  const [availableFilters, setAvailableFilters] = useState([/* "GTA 5" */, "Steep", "Minecraft Parkour", /* "Minecraft Building" */, "Fortnite", /* "Forza Horizon" */])
+  const [availableFilters, setAvailableFilters] = useState(["GTA 5", "Steep", "Minecraft Parkour", "Minecraft Building", "Fortnite", "Forza Horizon"])
   const [selectedFilter, setSelectedFilter] = useState("")
 
   const [isLoading, setIsLoading] = useState(true)
@@ -103,11 +103,13 @@ const MainPage = () => {
     setAreClipsLoading(true)
     setSelectedFilter(filter)
 
-    setFilteredClips(clips.filter(clip => clip?.genre.toLowerCase() === filter.toLowerCase()))
 
     setTimeout(() => {
+      setFilteredClips(clips.filter(clip => clip?.genre?.toLowerCase() === filter.toLowerCase()))
+    }, 250);
+    setTimeout(() => {
       setAreClipsLoading(false)
-    }, 200);
+    }, 350);
   }
 
 
@@ -135,7 +137,7 @@ const MainPage = () => {
                 setFilteredClips(clips)
                 setTimeout(() => {
                   setAreClipsLoading(false)
-                }, 200);
+                }, 300);
               }}
             >All</div>
 
