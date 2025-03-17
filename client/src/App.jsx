@@ -7,6 +7,7 @@ import SignUpPage from "./components/SignUpPage/SignUpPage";
 import MainPage from "./components/MainPage/MainPage";
 import PricingPage from "./components/PricingPage/PricingPage";
 import DownloadsPage from "./components/DownloadsPage/DownloadsPage";
+import { Analytics } from '@vercel/analytics/react';
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
         <Route element={<SignUpPage />} path="/signup" />
       </Routes> */}
       <LandingPage />
+      <Analytics />
 
       {/* <VideoPlayer src="https://pub-70afb9dcfa934980b35e0d79bfed253a.r2.dev/minecraft-parkur-53a8a156-489b-46e7-85f4-c891be033525.mp4" /> */}
     </div>
