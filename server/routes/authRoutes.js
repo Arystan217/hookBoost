@@ -48,9 +48,14 @@ router.post("/signup", async (req, res) => {
 
     console.log(JSON.stringify(data))
 
+
+    const loginRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     // validate login data
     if (!data.login.trim().length || !data.password.trim().length) {
       return res.status(400).json({ message: "Please make sure all fields are filled in" })
+    }
+    else if (!loginRegex.test(data.login)) {
+      return res.status(400).json({ message: "Please make sure all fields are filled in correctly" })
     }
 
     const isAlreadyUser = await User.findOne({ login: data.login })

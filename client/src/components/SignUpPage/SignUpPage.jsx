@@ -126,7 +126,7 @@ const SignUpPage = () => {
               ) : "Sign up"}
             </button>
 
-            <p className={styles.hasAnAccount}>Already has an account? <Link to="/login">Sign in</Link></p>
+            <p className={styles.hasAnAccount}>Already has an account? <Link to="/login">Log in</Link></p>
           </form>
 
         </div>

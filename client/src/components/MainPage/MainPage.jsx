@@ -56,10 +56,10 @@ const MainPage = () => {
           navigate
         })
 
-        console.log(res)
+        console.log(res.data.reverse())
 
-        setClips(res.data)
-        setFilteredClips(res.data)  // assuming that initial filter is always "All"
+        setClips(res.data.reverse())
+        setFilteredClips(res.data.reverse())  // assuming that initial filter is always "All"
         setIsLoading(false)
       } catch (e) {
         console.log(e)
