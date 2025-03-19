@@ -65,6 +65,14 @@ footer .container {
     margin-bottom: 25px;
   }
   .footerContact{
-    max-width: 50%;
+    max-width: 64%;
+  }
+  .reserved {
+    width: 35%;
+    font-size: 16px;
+    color: #c1c5ca;
+    letter-spacing: 0.2px;
+    padding-right: 4px;
+    box-sizing: border-box;
   }
 }

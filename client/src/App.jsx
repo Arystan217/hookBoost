@@ -14,19 +14,19 @@ const App = () => {
 
   return (
     <div>
-      {/* <Routes>
+      <Routes>
         <Route element={<LandingPage />} path="/" />
         <Route element={<MainPage />} path="/mainPage" />
         {/* <Route element={<PricingPage />} path="/pricing" /> */}
-      {/* <Route element={<DownloadsPage />} path="/downloads" />
+        <Route element={<DownloadsPage />} path="/downloads" />
         <Route element={<LoginPage />} path="/login" />
         <Route element={<SignUpPage />} path="/signup" />
         <Route element={<HeyPage />} path="/login2" />
-      </Routes> */}
-      <LandingPage />
-      <Analytics />
+      </Routes>
+      {/* <LandingPage />
+        <Analytics />
 
-      {/* <VideoPlayer src="https://pub-70afb9dcfa934980b35e0d79bfed253a.r2.dev/minecraft-parkur-53a8a156-489b-46e7-85f4-c891be033525.mp4" /> */}
+        {/* <VideoPlayer src="https://pub-70afb9dcfa934980b35e0d79bfed253a.r2.dev/minecraft-parkur-53a8a156-489b-46e7-85f4-c891be033525.mp4" /> */}
     </div>
   );
 };
