@@ -20,7 +20,7 @@
 }
 
 .content {
-  padding: 24px 18px 15px;
+  padding: 30px 25px 20px;
   border-radius: 20px;
   /* #3C5A83 */
   background: #243752;
@@ -55,7 +55,7 @@ form {
   border: 1px solid #747775;
   border-radius: 8px;
   transition: all 0.3s ease;
-  letter-spacing: 0.3px;
+  letter-spacing: 0.5px;
 }
 .inputContainer input:focus + label,
 .inputContainer input:not(:placeholder-shown) + label {
@@ -132,8 +132,8 @@ form {
 .hasAnAccount {
   color: rgba(255, 255, 255, 0.8);
   letter-spacing: 0.2px;
-  font-size: 16px;
-  margin-top: 16px;
+  font-size: 17.5px;
+  margin-top: 20px;
   text-align: center;
 }
 .hasAnAccount a {
@@ -144,7 +144,7 @@ form {
   -webkit-text-fill-color: transparent;
   transition: all 0.2s ease;
   font-weight: 500;
-  font-size: 16px;
+  /* font-size: 16px; */
   text-shadow: 0 0 2px rgba(40, 192, 240, 0.3);
 }
 .hasAnAccount a:hover {

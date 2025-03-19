@@ -6,7 +6,7 @@ import logoImg from "../../assets/logo.png"
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { tailChase } from 'ldrs'
-import { smartRequest } from "../../utils/smartRequest";
+// import { smartRequest } from "../../utils/smartRequest";
 
 const SignUpPage = () => {
 
@@ -24,15 +24,16 @@ const SignUpPage = () => {
     // check auth
     const checkAuth = async () => {
       try {
-        const res = await smartRequest({
-          method: "GET",
-          endpoint: "api/getUserDownloads",
+        /* const res = await smartRequest({
+          method: "POST",
+          endpoint: "api/checkAuth",
           payload: {},
           headers: {
             // "ngrok-skip-browser-warning": "69420",
           },
           navigate
-        })
+        }) */
+        await axios.post(`${import.meta.env.VITE_REACT_APP_API_URL}/api/checkAuth`)
 
         console.log("authorized");
         navigate("/mainPage")

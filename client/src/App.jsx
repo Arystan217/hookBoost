@@ -8,6 +8,7 @@ import MainPage from "./components/MainPage/MainPage";
 import PricingPage from "./components/PricingPage/PricingPage";
 import DownloadsPage from "./components/DownloadsPage/DownloadsPage";
 import { Analytics } from '@vercel/analytics/react';
+import HeyPage from "./components/LoginPage/GradientBackground";
 
 const App = () => {
 
@@ -20,6 +21,7 @@ const App = () => {
         <Route element={<DownloadsPage />} path="/downloads" />
         <Route element={<LoginPage />} path="/login" />
         <Route element={<SignUpPage />} path="/signup" />
+        <Route element={<HeyPage />} path="/login2" />
       </Routes>
       {/* <LandingPage /> */}
       <Analytics />
