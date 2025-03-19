@@ -8,9 +8,9 @@ import MainPage from "./components/MainPage/MainPage";
 import PricingPage from "./components/PricingPage/PricingPage";
 import DownloadsPage from "./components/DownloadsPage/DownloadsPage";
 import { Analytics } from '@vercel/analytics/react';
-import "animate.css/animate.compat.css"
 
 const App = () => {
+
   return (
     <div>
       <Routes>

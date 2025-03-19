@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./LandingPage.module.css";
 import logoImg from "../../assets/logo.png"
 import Typewriter from "typewriter-effect";
 import { Link } from "react-router-dom";
-import withoutHookboostImage from "../../assets/withoutHookboost.png"
-import lackOfAttentionImage from "../../assets/lackOfAttention.jpg"
-import socialLogosImage from "../../assets/socialLogos.jpg"
+// import withoutHookboostImage from "../../assets/withoutHookboost.png"
+// import lackOfAttentionImage from "../../assets/lackOfAttention.jpg"
+// import socialLogosImage from "../../assets/socialLogos.jpg"
 import viewersImage from "../../assets/viewers.jpg"
 import slowIcon from "../../assets/slow.png"
 import editingHassleIcon from "../../assets/editingHassle2.png"
@@ -15,38 +15,27 @@ import exampleImage from "../../assets/example3.png"
 import exampleImage2 from "../../assets/example4.png"
 import colorTuningImage from "../../assets/colorTuning.png"
 import vastLibraryImage from "../../assets/vastLibrary.png"
+// import ScrollAnimation from 'react-animate-on-scroll';
+import Footer from "../Footer/Footer";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
+const LandingPage = () => {
 
-const BackgroundsPage = () => {
-
-
-
-
-  // fetching clips
-  /* useEffect(() => {
-    const fetchClips = async () => {
-      try {
-        const res = await axios.get(`http://localhost:5000/api/getClipsInfo`);
-
-        console.log(res)
-
-        setClips(res.data)
-
-
-      } catch (error) {
-        console.error("Download failed:", error);
-      }
-    }
-
-    fetchClips()
-
-  }, []) */
+  useEffect(() => {
+    AOS.init({
+      duration: 590,
+      easing: "ease-in-out",
+      once: false,
+    });
+  }, []);
 
 
   return (
     <div className={styles.wrapper}>
 
-      <header>
+      {/* <ScrollAnimation animateIn='fadeIn' duration={0.85} offset={0}> */}
+      <header data-aos="fade-down" data-aos-duration="900">
         <div className={styles.container}>
           <a className={styles.logo} href="/">
             <img src={logoImg} alt="" className={styles.logoImg} />
@@ -59,6 +48,8 @@ const BackgroundsPage = () => {
           </div>
         </div>
       </header>
+      {/* </ScrollAnimation> */}
+
 
       <div className={styles.container}>
 
@@ -66,7 +57,9 @@ const BackgroundsPage = () => {
         {/* <span className={`${styles.blurredBg} ${styles.blob2}`}></span> */}
 
         <div className={styles.offer}>
-          <h1 className={styles.title}>
+
+          <h1 className={styles.title} data-aos="fade-in" data-aos-duration="900">
+            {/* <ScrollAnimation animateIn='fadeInDown' duration={0.75}> */}
             <span className={styles.titleFirstPart}>
               Make your
             </span>
@@ -87,19 +80,33 @@ const BackgroundsPage = () => {
             <div className={styles.br}></div>
             <span className={styles.underline}>unskippable</span>
             {/* Hook Your Viewers' Attention */}
+            {/* </ScrollAnimation> */}
           </h1>
-          <p className={styles.subtitle}>
+
+          <p className={styles.subtitle} data-aos="fade-right" data-aos-duration="900">
+            {/* <ScrollAnimation animateIn='fadeInRight' duration={0.75}> */}
             Keep viewers from scrolling away by adding eye-catching visuals next to your main content. Access a vast library of easy-to-watch clips — perfect for storytelling videos, stream highlights, and viral moments.
             {/* Hook More Views with Eye-catching parallel videos. Choose from wide variety of visuals that boost retention and make your short videos unskippable. */}
+            {/* </ScrollAnimation> */}
           </p>
 
-          <a /* to="/signup" */ href="https://forms.gle/6KjigUyzA5zhbXBXA" target="_blank" className={styles.heroButton}>Join the waitlist today!</a>
-          <p className={styles.belowHeroButtonText}>{/* No credit card required */}Launching in Mid-Spring 2025</p>
+          {/* <ScrollAnimation animateIn='fadeInLeft' duration={0.75}> */}
+          <a /* to="/signup" */ href="https://forms.gle/6KjigUyzA5zhbXBXA" target="_blank" className={styles.heroButton} data-aos="fade-left" data-aos-duration="900">
+            Join the waitlist today!
+          </a>
+          {/* </ScrollAnimation> */}
+
+          <p className={styles.belowHeroButtonText} data-aos="fade-up" data-aos-duration="900">{/* No credit card required */}
+            {/* <ScrollAnimation animateIn='fadeInUp' duration={0.75}> */}
+            Launching in Mid-Spring 2025
+            {/* </ScrollAnimation> */}
+          </p>
         </div>
 
         <div className={styles.problem}>
           <div className={styles.problemContent}>
-            <div className={styles.problemContentLeft}>
+            <div className={styles.problemContentLeft} data-aos="fade-in" data-aos-duration="550" data-aos-offset="170">
+              {/* <ScrollAnimation animateIn='fadeInLeft'> */}
               <h3 className={styles.sectionTitle}>
                 What is a background video and how it's helpful?
               </h3>
@@ -112,30 +119,43 @@ const BackgroundsPage = () => {
               <p className={styles.sectionText}>
                 By holding attention longer and boosting engagement, background videos signal to the algorithm that your content is worth showing to more people. It’s not just a detail - it’s a <b>powerful tool for growth</b>.
               </p>
+              {/* </ScrollAnimation> */}
             </div>
 
-            <div className={styles.problemContentRight}>
-
+            <div className={styles.problemContentRight} data-aos="fade-up" data-aos-duration="550" data-aos-offset="150">
+              {/* <ScrollAnimation animateIn='fadeInUp'> */}
               <img src={viewersImage} alt="" />
+              {/* </ScrollAnimation> */}
             </div>
           </div>
         </div>
 
 
         <div className={styles.struggle}>
-          <h3 className={styles.struggleTitle}>The Struggle of Finding the Perfect Background video</h3>
-          <h3 className={styles.struggleSubtitle}>Getting a high-quality, engaging background video isn’t easy. Here’s why it’s a hassle <br /> without HookBoost:</h3>
+          <h3 className={styles.struggleTitle} data-aos="fade-in" data-aos-duration="550">
+            {/* <ScrollAnimation animateIn='fadeIn' duration={0.75}> */}
+            The Struggle of Finding the Perfect Background video
+            {/* </ScrollAnimation> */}
+          </h3>
+          <h3 className={styles.struggleSubtitle} data-aos="fade-in" data-aos-duration="550" data-aos-delay="100">
+            {/* <ScrollAnimation animateIn='fadeIn' duration={0.75} delay={100}> */}
+            Getting a high-quality, engaging background video isn’t easy. Here’s why it’s a hassle <br /> without HookBoost:
+            {/* </ScrollAnimation> */}
+          </h3>
           <div className={styles.struggleContent}>
-            <div className={styles.struggleItem}>
+            <div className={styles.struggleItem} data-aos="fade-up" data-aos-duration="550" data-aos-delay="0">
+              {/* <ScrollAnimation animateIn='fadeIn' duration={0.75} delay={100}> */}
               <img src={slowIcon} className={styles.struggleItemIcon} alt="" />
 
               <div className={styles.struggleItemInfo}>
                 <p className={styles.struggleItemTitle}>Endless Searching</p>
-                <p className={styles.struggleItemText}>Finding the right video takes ages. Many clips are low-quality, off-theme, or just not engaging enough.</p>
+                <p className={styles.struggleItemText}>Finding the right video takes ages. Many clips are low-quality, copyright protected, or just not engaging enough.</p>
               </div>
+              {/* </ScrollAnimation> */}
             </div>
 
-            <div className={styles.struggleItem}>
+
+            <div className={styles.struggleItem} data-aos="fade-up" data-aos-duration="550" data-aos-delay="150">
               <img src={resolutionIcon} className={styles.struggleItemIcon} alt="" />
 
               <div className={styles.struggleItemInfo}>
@@ -144,7 +164,7 @@ const BackgroundsPage = () => {
               </div>
             </div>
 
-            <div className={styles.struggleItem}>
+            <div className={styles.struggleItem} data-aos="fade-up" data-aos-duration="550" data-aos-delay="50">
               <img src={storageIcon} className={styles.struggleItemIcon} alt="" />
 
               <div className={styles.struggleItemInfo}>
@@ -153,7 +173,7 @@ const BackgroundsPage = () => {
               </div>
             </div>
 
-            <div className={styles.struggleItem}>
+            <div className={styles.struggleItem} data-aos="fade-up" data-aos-duration="550" data-aos-delay="150">
               <img src={editingHassleIcon} className={styles.struggleItemIcon} alt="" />
 
               <div className={styles.struggleItemInfo}>
@@ -166,7 +186,7 @@ const BackgroundsPage = () => {
 
         <div className={styles.solution}>
           <div className={styles.problemContent}>
-            <div className={styles.problemContentLeft}>
+            <div className={styles.problemContentLeft} data-aos="fade-down" data-aos-duration="550" data-aos-offset="100">
               <h3 className={styles.sectionTitle}>
                 HookBoost’s Smart Approach to Background Videos
               </h3>
@@ -178,7 +198,7 @@ const BackgroundsPage = () => {
               </p>
             </div>
 
-            <div className={styles.solutionContentRight}>
+            <div className={styles.solutionContentRight} data-aos="fade-left" data-aos-duration="550" data-aos-offset="200">
               <img src={exampleImage} alt="" />
               <img src={exampleImage2} alt="" />
             </div>
@@ -187,11 +207,12 @@ const BackgroundsPage = () => {
 
         <div className={styles.perfection}>
           <div className={styles.problemContent}>
-            <div className={styles.sectionImageWrapper}>
+            <div className={styles.sectionImageWrapper} data-aos="fade-down" data-aos-duration="550" data-aos-offset="200">
               <img src={colorTuningImage} alt="" />
             </div>
 
-            <div className={styles.problemContentLeft}>
+            {/* <ScrollAnimation animateIn='fadeIn' duration={1}> */}
+            <div className={styles.problemContentLeft} data-aos="fade-left" data-aos-duration="550" data-aos-offset="200">
               <h3 className={styles.sectionTitle}>
                 Perfection in Every Detail
               </h3>
@@ -202,12 +223,13 @@ const BackgroundsPage = () => {
                 With HookBoost, you’re not just adding a background - <b>you’re creating an uninterrupted, captivating experience.</b>
               </p>
             </div>
+            {/* </ScrollAnimation> */}
           </div>
         </div>
 
         <div className={styles.solution}>
           <div className={styles.problemContent}>
-            <div className={styles.problemContentLeft}>
+            <div className={styles.problemContentLeft} data-aos="fade-right" data-aos-duration="550" data-aos-offset="200">
               <h3 className={styles.sectionTitle}>
                 Stand out from the crowd
               </h3>
@@ -216,46 +238,29 @@ const BackgroundsPage = () => {
               </p>
             </div>
 
-            <div className={styles.sectionImageWrapper}>
+            <div className={styles.sectionImageWrapper} data-aos="fade-down" data-aos-duration="550" data-aos-offset="200">
               <img src={vastLibraryImage} alt="" />
             </div>
           </div>
         </div>
 
         <div className={styles.cta}>
-          <h3 className={styles.ctaTitle}>Ready to Dominate TikTok, Reels, and Shorts?</h3>
-          <p className={styles.ctaSubtitle}>Start creating unskippable content today!</p>
+          <h3 className={styles.ctaTitle} data-aos="fade-right" data-aos-duration="550">Ready to Dominate TikTok, Reels, and Shorts?</h3>
+          <p className={styles.ctaSubtitle} data-aos="fade-left" data-aos-duration="550">Start creating unskippable content today!</p>
 
           {/* <a className={styles.ctaButton}>!</a> */}
           {/* <Link to="/signup" className={styles.heroButton}>Boost engagement today!Join the waitlist today</Link> */}
-          <a /* to="/signup" */ href="https://forms.gle/6KjigUyzA5zhbXBXA" target="_blank" className={styles.heroButton}>Join the waitlist today!</a>
-          <p className={styles.belowHeroButtonText}>{/* No credit card required */}Launching in Mid-Spring 2025</p>
+          <a /* to="/signup" */ href="https://forms.gle/6KjigUyzA5zhbXBXA" target="_blank" className={styles.heroButton} data-aos="fade-in" data-aos-duration="550">Join the waitlist today!</a>
+          <p className={styles.belowHeroButtonText} data-aos="fade-up" data-aos-duration="550">{/* No credit card required */}Launching in Mid-Spring 2025</p>
         </div>
 
 
       </div>
 
-      <footer>
-        <div className={styles.container}>
-          <div className={styles.footerCompany}>
-            <img src={logoImg} alt="" className={styles.footerLogo} />
-
-            <p>The ultimate source for eye-catching, high-retention video clips.</p>
-          </div>
-
-          <p className={styles.reserved}>©2025 HookBoost. All rights reserved.</p>
-
-          <div className={styles.footerContact}>
-            <p className={styles.footerContactTitle}>Contact Us</p>
-            <p className={styles.footerContactSubtitle}>Have questions or need support? Reach out at:</p>
-            <a href="mailto:arystan.working@gmail.com">arystan.working@gmail.com</a>
-          </div>
-        </div>
-
-      </footer>
+      <Footer />
 
     </div>
   );
 };
 
-export default BackgroundsPage;
+export default LandingPage;

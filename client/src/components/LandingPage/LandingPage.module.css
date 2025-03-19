@@ -157,6 +157,7 @@ header .container {
 
 .heroButton {
   font-size: 19px;
+  display: block;
   margin-top: 35px;
   padding: 13px 40px 15px;
   letter-spacing: 1px;
@@ -182,7 +183,7 @@ header .container {
 .belowHeroButtonText {
   text-align: center;
   margin-top: 8px;
-  opacity: .35;
+  color: #5F6978;
   letter-spacing: .4px;
   font-size: 15px;
   font-style: italic;
@@ -314,7 +315,7 @@ header .container {
 .struggleSubtitle {
   text-align: center;
   margin-top: 6px;
-  opacity: 0.4;
+  color: #6C7582;
   font-weight: 300;
   font-size: 17px;
   margin-bottom: 28px;
@@ -430,64 +431,6 @@ header .container {
   font-weight: 300;
   font-size: 21px;
   letter-spacing: 0.4px;
-}
-
-
-footer {
-  margin-top: 100px;
-  padding: 23px 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
-}
-footer .container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-}
-.footerCompany {
-  width: 30%; 
-}
-.footerLogo {
-  max-width: 180px;
-  width: 100%;
-}
-.footerCompany p {
-  margin-top: -2px;
-  font-size: 16px;
-  color: #A9AFB6;
-  letter-spacing: 0.3px;
-}
-.reserved {
-  width: 30%;
-  font-size: 16px;
-  color: #c1c5ca;
-  letter-spacing: 0.2px;
-}
-.footerContact{
-  max-width: 33%;
-}
-.footerContactTitle {
-  font-size: 21px;
-  font-weight: 500;
-  margin-bottom: 3px;
-}
-.footerContactSubtitle {
-  font-size: 16px;
-  font-weight: 300;
-}
-.footerContact a {
-  font-weight: 500;
-  margin-top: 3px;
-  font-size: 17px;
-  background: linear-gradient(90deg, rgba(40, 192, 240, 1) 0%, rgba(49, 137, 226, 1) 100%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
-  transition: all 0.2s ease;
-  word-break: break-all;
-}
-.footerContact a:hover {
-  text-shadow: 0 0 10px rgba(48, 145, 229, 0.6);
 }
 
 
@@ -627,15 +570,8 @@ footer .container {
     object-fit: contain;
   }
 
-  .footerCompany {
-    width: 100%; 
-    margin-bottom: 25px;
-  }
   .reserved {
     width: 48%;
-  }
-  .footerContact{
-    max-width: 50%;
   }
 }
 @media (max-width: 390px) {
