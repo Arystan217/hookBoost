@@ -1,10 +1,12 @@
 import React from "react"
 import styles from "./ClipPopup.module.css"
 import logoImg from "../../assets/logo.png"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { smartRequest } from "../../utils/smartRequest"
 
 const ClipPopup = ({ clipPopup, setClipPopup }) => {
+
+  const navigate = useNavigate()
 
   const url = "https://pub-70afb9dcfa934980b35e0d79bfed253a.r2.dev"
 
