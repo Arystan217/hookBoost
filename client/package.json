@@ -11,9 +11,12 @@
   },
   "dependencies": {
     "@vercel/analytics": "^1.5.0",
+    "animate.css": "^4.1.1",
+    "aos": "^2.3.4",
     "axios": "^1.8.2",
     "ldrs": "^1.1.2",
     "react": "^19.0.0",
+    "react-animate-on-scroll": "^2.1.9",
     "react-dom": "^19.0.0",
     "react-router-dom": "^7.3.0",
     "typewriter-effect": "^2.21.0"

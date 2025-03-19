@@ -1,3 +1,6 @@
+header {
+  z-index: 10;
+}
 .container {
   max-width: 1350px;
   margin: 0 auto;
@@ -10,12 +13,15 @@ header .container {
   justify-content: space-between;
   align-items: center;
   padding: 25px 15px 10px;
+  z-index: 10;
 }
 
 .logo {}
 
 .logoImg {
   width: 190px;
+  position: relative;
+  top: 6px;
 }
 .headerLinks {
 
@@ -44,8 +50,9 @@ header .container {
 .headerOfferButton {
   font-size: 17.5px;
   letter-spacing: 0.2px;
-  margin-left: 22px;
-  padding: 5px 12px 6px;
+  /* margin-left: 22px; */
+  margin-left: 15px;
+  padding: 5px 16px 6px;
   letter-spacing: 1px;
   border-radius: 5.5px;
   border: none;
@@ -64,4 +71,82 @@ header .container {
 .headerOfferButton:hover {
   background-position: 99% 0;
   box-shadow: 0 0 24px rgba(40, 192, 240, 0.8)
+}
+
+
+.burger {
+  width: 40px;
+  height: 30px;
+  position: relative;
+  display: none;
+}
+.burger > span {
+  width: 100%;
+  height: 2px;
+  background: #fff;
+  position: absolute;
+  left: 0;
+  transition: all 0.3s ease;
+}
+.top {top: 0;}
+.middle {top: 50%; transform: translateY(-50%);}
+.bottom {bottom: 0;}
+
+.burgerActive .top {
+  transform: rotateZ(45deg);
+  top: 14px;
+}
+.burgerActive .middle {
+  opacity: 0;
+}
+.burgerActive .bottom {
+  bottom: 14px;
+  transform: rotateZ(-45deg);
+}
+
+.burgerPopup {
+  z-index: 5;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #10284C;
+  transition: all 0.6s ease;
+  transform: scale(0.95);
+  opacity: 0;
+  visibility: hidden;
+}
+.burgerPopupActive {
+  transform: scale(1);
+  opacity: 1;
+  visibility: visible;
+}
+.burgerContent {
+  margin-top: 20px;
+  z-index: 6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.burgerContent .headerLink {
+  font-size: 21px;
+}
+.burgerContent .headerOfferButton {
+  font-size: 21px;
+  margin-top: 20px;
+}
+
+
+@media (max-width: 710px) {
+  .headerLinks {
+    display: none;
+  }
+  .burger {
+    display: block;
+  }
 }

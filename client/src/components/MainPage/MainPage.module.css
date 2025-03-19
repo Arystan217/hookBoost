@@ -1,4 +1,8 @@
-.wrapper {}
+.wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
 
 .noScroll {
   max-height: 100vh;
@@ -12,10 +16,18 @@
   /* position: relative; */
 }
 
+/* Nailing the footer to the bottom of the page  */
+.content {
+  flex: 1 1 auto;
+}
+
 .filters {
   margin-top: 10px;
   display: flex;
   align-items: center;
+  width: 100%;
+  overflow: hidden;
+  overflow-x: auto;
 }
 .filter {
   letter-spacing: 0.3px;
@@ -32,6 +44,10 @@
   cursor: pointer;
   margin-right: 6px;
   transition: all 0.4s ease-in-out;
+  white-space: nowrap;
+}
+.filter:last-child {
+  margin-right: 0;
 }
 .filterActive {
   background-position: 100% 0;
@@ -49,6 +65,7 @@
 .clips {
   margin-top: 13px;
   border-radius: 20px;
+  overflow: hidden;
   background: #4E5868;
   z-index: 5;
   display: flex;
@@ -67,18 +84,17 @@
   border-right: 1px solid rgba(236, 236, 236, 0.4);
   border-top: 1px solid rgba(236, 236, 236, 0.4);
   cursor: pointer;
-  transition: all 0.3s ease;
   overflow: hidden;
   z-index: 1;
   position: relative;
 }
 
-.clip:nth-child(4n+1) {
+/* .clip:nth-child(4n+1) {
   border-radius: 20px 0 0 20px;
 }
 .clip:nth-child(4n+4) {
   border-radius: 0px 20px 20px 0px;
-}
+} */
 
 .clip:nth-child(1),
 .clip:nth-child(2),
@@ -91,14 +107,15 @@
   border-right: none;
 }
 
-.clip:hover {
+/* .clip:hover {
   transform: scale(1.08);
   border-radius: 16px;
   background: #4E5868;
   border-color: transparent;
   box-shadow: 0 0 19px #2d333d;
   z-index: 2;
-}
+} */
+
 
 .clipLoader {
   display: flex;
@@ -117,6 +134,10 @@
   object-fit: cover;
   pointer-events: none;
   z-index: 2;
+  transition: all 0.3s ease;
+}
+.clip:hover .clipPreview {
+  transform: scale(1.2);
 }
 
 .clipHover {
@@ -148,8 +169,8 @@
 
 .clipHover span {
   margin-top: 8px;
-  font-size: 18.5px;
-  letter-spacing: 0.3px;
+  font-size: 19px;
+  letter-spacing: 0.5px;
   text-shadow: 0 0 4px rgba(0, 0, 0, 0.6);
 }
 
@@ -321,4 +342,21 @@
 .loaderVisible {
   opacity: 1;
   visibility: visible;
+}
+
+
+@media (max-width: 800px) {
+  .clip {
+    width: 33.33333%;
+  }
+}
+@media (max-width: 530px) {
+  .clip {
+    width: 50%;
+  }
+}
+@media (max-width: 350px) {
+  .clip {
+    width: 100%;
+  }
 }

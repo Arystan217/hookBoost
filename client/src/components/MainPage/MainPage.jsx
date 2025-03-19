@@ -6,6 +6,7 @@ import logoImg from "../../assets/logo.png"
 import playIcon from "../../assets/play.png"
 import { tailChase } from 'ldrs'
 import AuthorizedHeader from "../AuthorizedHeader/AuthorizedHeader";
+import Footer from "../Footer/Footer";
 
 
 const MainPage = () => {
@@ -32,7 +33,7 @@ const MainPage = () => {
 
   const [filteredClips, setFilteredClips] = useState([])
 
-  const [availableFilters, setAvailableFilters] = useState(["GTA 5", "Steep", "Minecraft Parkour", "Minecraft Building", "Fortnite", "Forza Horizon"])
+  const [availableFilters, setAvailableFilters] = useState(["GTA 5", "Steep", /* "Minecraft Parkour", "Minecraft Building" */ "Minecraft", "Fortnite", "Forza Horizon"])
   const [selectedFilter, setSelectedFilter] = useState("")
 
   const [isLoading, setIsLoading] = useState(true)
@@ -117,42 +118,43 @@ const MainPage = () => {
     <div className={`${styles.wrapper} ${clipPopup.isOpened && styles.noScroll}`}>
       <AuthorizedHeader />
 
-      <div className={styles.container}>
+      <div className={styles.content}>
+        <div className={styles.container}>
 
-        <div className={`${styles.loader} ${isLoading && styles.loaderVisible}`}>
-          <l-tail-chase
-            size="52"
-            speed="1.75"
-            color="#fff"
-          ></l-tail-chase>
-        </div>
-
-        <div className={`${styles.fadingContent} ${!isLoading && styles.fadingContentVisible}`}>
-          <div className={styles.filters}>
-            <div
-              className={`${styles.filter} ${!selectedFilter && styles.filterActive}`}
-              onClick={() => {
-                setAreClipsLoading(true)
-                setSelectedFilter("");
-                setFilteredClips(clips)
-                setTimeout(() => {
-                  setAreClipsLoading(false)
-                }, 300);
-              }}
-            >All</div>
-
-            {availableFilters?.map(fl => (
-              <div
-                className={`${styles.filter} ${selectedFilter == fl ? styles.filterActive : ""}`}
-                onClick={() => filterHandler(fl)}>
-                {fl}
-              </div>
-            ))}
+          <div className={`${styles.loader} ${isLoading && styles.loaderVisible}`}>
+            <l-tail-chase
+              size="52"
+              speed="1.75"
+              color="#fff"
+            ></l-tail-chase>
           </div>
 
-          <h2 className={styles.sectionTitle}>Clips:</h2>
+          <div className={`${styles.fadingContent} ${!isLoading && styles.fadingContentVisible}`}>
+            <div className={styles.filters}>
+              <div
+                className={`${styles.filter} ${!selectedFilter && styles.filterActive}`}
+                onClick={() => {
+                  setAreClipsLoading(true)
+                  setSelectedFilter("");
+                  setFilteredClips(clips)
+                  setTimeout(() => {
+                    setAreClipsLoading(false)
+                  }, 300);
+                }}
+              >All</div>
 
-          {/* <div className={`${styles.loader} ${areClipsLoading && styles.loaderVisible}`}>
+              {availableFilters?.map(fl => (
+                <div
+                  className={`${styles.filter} ${selectedFilter == fl ? styles.filterActive : ""}`}
+                  onClick={() => filterHandler(fl)}>
+                  {fl}
+                </div>
+              ))}
+            </div>
+
+            <h2 className={styles.sectionTitle}>Clips:</h2>
+
+            {/* <div className={`${styles.loader} ${areClipsLoading && styles.loaderVisible}`}>
             <l-tail-chase
               size="52"
               speed="1.75"
@@ -160,43 +162,44 @@ const MainPage = () => {
             ></l-tail-chase>
           </div> */}
 
-          <div className={`${styles.clips} ${areClipsLoading && styles.clipsLoading}`}>
+            <div className={`${styles.clips} ${areClipsLoading && styles.clipsLoading}`}>
 
-            {filteredClips?.map(el => (
-              <div className={styles.clip} onClick={() => setClipPopup(prev => ({
-                isOpened: true,
-                clip: el
-              }))}>
-                <div className={styles.clipLoader}>
-                  <l-tail-chase
-                    size="42"
-                    speed="1.75"
-                    color="#fff"
-                  ></l-tail-chase>
+              {filteredClips?.map(el => (
+                <div className={styles.clip} onClick={() => setClipPopup(() => ({
+                  isOpened: true,
+                  clip: el
+                }))}>
+                  <div className={styles.clipLoader}>
+                    <l-tail-chase
+                      size="42"
+                      speed="1.75"
+                      color="#fff"
+                    ></l-tail-chase>
+                  </div>
+
+                  <video
+                    src={`${url}/${el?.key}-preview.mp4`}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className={styles.clipPreview}
+                  />
+
+                  <div className={styles.clipHover}>
+                    <img src={playIcon} alt="" className={styles.playIcon} />
+                    <span>Watch full clip</span>
+                  </div>
                 </div>
+              ))}
 
-                <video
-                  src={`${url}/${el?.key}-preview.mp4`}
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  className={styles.clipPreview}
-                />
-
-                <div className={styles.clipHover}>
-                  <img src={playIcon} alt="" className={styles.playIcon} />
-                  <span>Watch full clip</span>
-                </div>
-              </div>
-            ))}
-
+            </div>
           </div>
+
+
+
+
         </div>
-
-
-
-
       </div>
 
 
@@ -247,9 +250,7 @@ const MainPage = () => {
         </div>
       </div>
 
-      <div>
-        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-      </div>
+      <Footer isMarginTop={isLoading} />
     </div>
   );
 };
