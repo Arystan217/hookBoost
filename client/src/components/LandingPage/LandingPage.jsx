@@ -227,7 +227,7 @@ const LandingPage = () => {
           </div>
         </div>
 
-        <div className={styles.solution}>
+        {/* <div className={styles.solution}>
           <div className={styles.problemContent}>
             <div className={styles.problemContentLeft} data-aos="fade-right" data-aos-duration="550" data-aos-offset="200">
               <h3 className={styles.sectionTitle}>
@@ -243,7 +243,7 @@ const LandingPage = () => {
             </div>
           </div>
         </div>
-
+ */}
         <div className={styles.cta}>
           <h3 className={styles.ctaTitle} data-aos="fade-right" data-aos-duration="550">Ready to Dominate TikTok, Reels, and Shorts?</h3>
           <p className={styles.ctaSubtitle} data-aos="fade-left" data-aos-duration="550">Start creating unskippable content today!</p>
