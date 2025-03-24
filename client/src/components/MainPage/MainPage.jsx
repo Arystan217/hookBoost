@@ -34,7 +34,7 @@ const MainPage = () => {
 
   const [filteredClips, setFilteredClips] = useState([])
 
-  const [availableFilters, setAvailableFilters] = useState(["GTA 5", "Steep", /* "Minecraft Parkour", "Minecraft Building" */ "Minecraft", "Fortnite", "Forza Horizon"])
+  const [availableFilters, setAvailableFilters] = useState(["Mobile games", "GTA 5", "Steep", /* "Minecraft Parkour", "Minecraft Building" */ "Minecraft", "Fortnite", "Forza Horizon"])
   const [selectedFilter, setSelectedFilter] = useState("")
 
   const [isLoading, setIsLoading] = useState(true)

@@ -17,7 +17,7 @@ const Footer = ({ isMarginTop }) => {
         <div className={styles.footerContact}>
           <p className={styles.footerContactTitle}>Contact Us</p>
           <p className={styles.footerContactSubtitle}>Have questions or need support? Reach out at:</p>
-          <a href="mailto:arystan.working@gmail.com">contact@hookboost.com</a>
+          <a href="mailto:contact@hookboost.com">contact@hookboost.com</a>
         </div>
       </div>
 

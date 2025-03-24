@@ -31,6 +31,7 @@ footer .container {
   font-size: 16px;
   color: #c1c5ca;
   letter-spacing: 0.2px;
+  text-align: center;
 }
 .footerContact{
   max-width: 33%;
@@ -74,5 +75,6 @@ footer .container {
     letter-spacing: 0.2px;
     padding-right: 4px;
     box-sizing: border-box;
+    text-align: left;
   }
 }
