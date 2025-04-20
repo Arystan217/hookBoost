@@ -43,8 +43,8 @@ const LandingPage = () => {
 
           {/* <a href="mailto: arystan.working@gmail.com" className={styles.headerLink}>contact@hookboost.com</a> */}
           <div className={styles.headerLinks}>
-            {/* <Link to="/login" className={styles.headerLink}>Sign in</Link> */}
-            <a /* to="/signup" */ href="https://forms.gle/6KjigUyzA5zhbXBXA" target="_blank" className={styles.headerOfferButton}>Join waitlist</a>
+            <Link to="/login" className={styles.headerLink}>Log in</Link>
+            <Link to="/signup" className={styles.headerOfferButton}>Sign up</Link>
           </div>
         </div>
       </header>
@@ -91,15 +91,14 @@ const LandingPage = () => {
           </p>
 
           {/* <ScrollAnimation animateIn='fadeInLeft' duration={0.75}> */}
-          <a /* to="/signup" */ href="https://forms.gle/6KjigUyzA5zhbXBXA" target="_blank" className={styles.heroButton} data-aos="fade-left" data-aos-duration="900">
-            Join the waitlist today!
+          <a to="/signup" className={styles.heroButton} data-aos="fade-left" data-aos-duration="900">
+            Get started now!
           </a>
           {/* </ScrollAnimation> */}
 
-          <p className={styles.belowHeroButtonText} data-aos="fade-up" data-aos-duration="900">{/* No credit card required */}
-            {/* <ScrollAnimation animateIn='fadeInUp' duration={0.75}> */}
-            Launching in Mid-Spring 2025
-            {/* </ScrollAnimation> */}
+          <p className={styles.belowHeroButtonText} data-aos="fade-up" data-aos-duration="900">
+            No credit card required
+            {/* Launching in Mid-Spring 2025 */}
           </p>
         </div>
 
@@ -250,8 +249,8 @@ const LandingPage = () => {
 
           {/* <a className={styles.ctaButton}>!</a> */}
           {/* <Link to="/signup" className={styles.heroButton}>Boost engagement today!Join the waitlist today</Link> */}
-          <a /* to="/signup" */ href="https://forms.gle/6KjigUyzA5zhbXBXA" target="_blank" className={styles.heroButton} data-aos="fade-in" data-aos-duration="550">Join the waitlist today!</a>
-          <p className={styles.belowHeroButtonText} data-aos="fade-up" data-aos-duration="550">{/* No credit card required */}Launching in Mid-Spring 2025</p>
+          <Link to="/signup" className={styles.heroButton} data-aos="fade-in" data-aos-duration="550">Get started now!</Link>
+          <p className={styles.belowHeroButtonText} data-aos="fade-up" data-aos-duration="550">No credit card required{/* Launching in Mid-Spring 2025 */}</p>
         </div>
 
 

@@ -6,7 +6,7 @@ import logoImg from "../../assets/logo.png"
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { tailChase } from 'ldrs'
-// import { smartRequest } from "../../utils/smartRequest";
+import { smartRequest } from "../../utils/smartRequest";
 
 const SignUpPage = () => {
 
@@ -24,7 +24,7 @@ const SignUpPage = () => {
     // check auth
     const checkAuth = async () => {
       try {
-        /* const res = await smartRequest({
+        await smartRequest({
           method: "POST",
           endpoint: "api/checkAuth",
           payload: {},
@@ -32,8 +32,8 @@ const SignUpPage = () => {
             // "ngrok-skip-browser-warning": "69420",
           },
           navigate
-        }) */
-        await axios.post(`${import.meta.env.VITE_REACT_APP_API_URL}/api/checkAuth`)
+        })
+        // await axios.post(`${import.meta.env.VITE_REACT_APP_API_URL}/api/checkAuth`)
 
         console.log("authorized");
         navigate("/mainPage")
@@ -56,13 +56,15 @@ const SignUpPage = () => {
         setErrorMsg("Almost there! Just make sure all fields are filled in.")
       }
 
-      const res = await axios.post(`http://localhost:5000/api/signup`, {
+      const res = await axios.post(`${import.meta.env.VITE_SERVER_URL}/api/signup`, {
         login,
         password,
         navigate
       }, { withCredentials: true })
 
       console.log(res)
+
+      localStorage.setItem('hookBoostAccessToken', res.data.accessToken)
 
       navigate("/mainPage")
 

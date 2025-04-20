@@ -6,7 +6,7 @@ export const smartRequest = async ({ method = "POST", endpoint, headers = {}, pa
     try {
       const reqConf = {
         method,
-        url: `${import.meta.env.VITE_REACT_APP_API_URL}/${endpoint}`,
+        url: `${import.meta.env.VITE_SERVER_URL}/${endpoint}`,
         headers: { ...headers, Authorization: `Bearer ${localStorage.getItem('hookBoostAccessToken')}` },
         withCredentials: true
       };
@@ -31,7 +31,7 @@ export const smartRequest = async ({ method = "POST", endpoint, headers = {}, pa
 
     try {
       const refreshResponse = await axios.post(
-        `${import.meta.env.VITE_REACT_APP_API_URL}/api/refresh`,
+        `${import.meta.env.VITE_SERVER_URL}/api/refresh`,
         {},
         { withCredentials: true } // Ensure cookies are sent
       );

@@ -14,15 +14,15 @@ const App = () => {
 
   return (
     <div>
-      {/* <Routes>
+      <Routes>
         <Route element={<LandingPage />} path="/" />
-        <Route element={<MainPage />} path="/mainPage" /> */}
+        <Route element={<MainPage />} path="/mainPage" />
       {/* <Route element={<PricingPage />} path="/pricing" /> */}
-      {/* <Route element={<DownloadsPage />} path="/downloads" />
+      <Route element={<DownloadsPage />} path="/downloads" />
         <Route element={<LoginPage />} path="/login" />
         <Route element={<SignUpPage />} path="/signup" />
         <Route element={<HeyPage />} path="/login2" />
-      </Routes> */}
+      </Routes>
       <LandingPage />
       <Analytics />
 

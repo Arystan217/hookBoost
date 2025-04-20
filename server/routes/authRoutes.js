@@ -126,7 +126,7 @@ router.post('/logout', (req, res) => {
 
 router.post('/checkAuth', authenticate, (req, res) => {
   console.log("user is authorized")
-  return res.status(200);
+  return res.json();
 });
 
 module.exports = router;
