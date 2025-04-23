@@ -23,7 +23,7 @@ const App = () => {
         <Route element={<SignUpPage />} path="/signup" />
         <Route element={<HeyPage />} path="/login2" />
       </Routes>
-      <LandingPage />
+      {/* <LandingPage /> */}
       <Analytics />
 
       {/* <VideoPlayer src="https://pub-70afb9dcfa934980b35e0d79bfed253a.r2.dev/minecraft-parkur-53a8a156-489b-46e7-85f4-c891be033525.mp4" /> */}
